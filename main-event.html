@@ -938,32 +938,56 @@
       });
     }
 
-const lineupTabs = document.querySelectorAll(".lineup-tab");
-const lineupPanels = document.querySelectorAll(".lineup-panel");
+<script>
+  /* 手機版導覽列 */
+  const menuToggle = document.querySelector(".menu-toggle");
+  const mainNav = document.querySelector(".main-nav");
+  const navLinks = document.querySelectorAll(".main-nav a");
 
-lineupTabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    const targetId = tab.dataset.lineup;
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener("click", () => {
+      const isOpen = mainNav.classList.toggle("is-open");
 
-    lineupTabs.forEach((item) => {
-      item.classList.remove("is-active");
-      item.setAttribute("aria-selected", "false");
+      menuToggle.classList.toggle("is-active", isOpen);
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
     });
 
-    lineupPanels.forEach((panel) => {
-      panel.classList.remove("is-active");
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mainNav.classList.remove("is-open");
+        menuToggle.classList.remove("is-active");
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
     });
+  }
 
-    tab.classList.add("is-active");
-    tab.setAttribute("aria-selected", "true");
+  /* 8月1日／8月2日舞台流程切換 */
+  const programTabs = document.querySelectorAll(".program-tab");
+  const programPanels = document.querySelectorAll(".program-panel");
 
-    const targetPanel = document.getElementById(targetId);
+  programTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const targetId = tab.dataset.program;
 
-    if (targetPanel) {
-      targetPanel.classList.add("is-active");
-    }
+      programTabs.forEach((item) => {
+        item.classList.remove("is-active");
+        item.setAttribute("aria-selected", "false");
+      });
+
+      programPanels.forEach((panel) => {
+        panel.classList.remove("is-active");
+      });
+
+      tab.classList.add("is-active");
+      tab.setAttribute("aria-selected", "true");
+
+      const targetPanel = document.getElementById(targetId);
+
+      if (targetPanel) {
+        targetPanel.classList.add("is-active");
+      }
+    });
   });
-});
   </script>
 
 </body>
