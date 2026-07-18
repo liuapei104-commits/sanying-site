@@ -162,241 +162,597 @@
 
       </div>
     </section>
+<!-- 舞台卡司與演出流程 -->
+<section class="section lineup-section" id="schedule">
+  <div class="container">
 
-    <!-- 舞台流程 -->
-    <section class="section schedule-page-section" id="schedule">
-      <div class="container">
+    <div class="section-heading centered">
+      <span class="section-en">STAGE LINEUP</span>
+      <h2>主場演出卡司</h2>
+      <p>
+        兩日集結親子表演、劇團、音樂團體與人氣藝人，
+        點選日期查看當日完整演出陣容。
+      </p>
+    </div>
 
-        <div class="section-heading centered">
-          <span class="section-en">STAGE PROGRAM</span>
-          <h2>主場舞台流程</h2>
-          <p>選擇日期，查看當日完整演出與活動安排。</p>
+    <!-- 日期切換 -->
+    <div class="lineup-tabs" role="tablist">
+      <button
+        class="lineup-tab is-active"
+        type="button"
+        data-lineup="lineup-day1"
+        role="tab"
+        aria-selected="true"
+      >
+        <span>DAY 1</span>
+        <strong>8月1日 星期六</strong>
+        <small>13:00－18:00｜親子歡樂日</small>
+      </button>
+
+      <button
+        class="lineup-tab"
+        type="button"
+        data-lineup="lineup-day2"
+        role="tab"
+        aria-selected="false"
+      >
+        <span>DAY 2</span>
+        <strong>8月2日 星期日</strong>
+        <small>10:00－18:00｜開幕音樂日</small>
+      </button>
+    </div>
+
+    <!-- =========================
+         8月1日
+    ========================== -->
+    <div class="lineup-panel is-active" id="lineup-day1">
+
+      <div class="lineup-day-heading">
+        <div>
+          <span>DAY 1 · SATURDAY</span>
+          <h3>8月1日演出陣容</h3>
         </div>
 
-        <div class="schedule-tabs" role="tablist">
+        <p>親子劇場・魔術・樂團・人氣見面會</p>
+      </div>
 
-          <button
-            class="schedule-tab is-active"
-            type="button"
-            data-schedule="day1"
-            role="tab"
-            aria-selected="true"
-          >
-            <small>DAY 1</small>
-            <strong>8月1日 星期六</strong>
-            <span>13:00－18:00</span>
-          </button>
+      <div class="performer-grid">
 
-          <button
-            class="schedule-tab"
-            type="button"
-            data-schedule="day2"
-            role="tab"
-            aria-selected="false"
-          >
-            <small>DAY 2</small>
-            <strong>8月2日 星期日</strong>
-            <span>10:00－18:00</span>
-          </button>
+        <!-- 蘋果兒童劇團 -->
+        <article class="performer-card performer-card-wide">
+          <div class="performer-photo">
+            <span class="performer-placeholder">
+              蘋果兒童劇團照片
+            </span>
 
-        </div>
+            <img
+              src="images/performers/0801-apple.jpg"
+              alt="蘋果兒童劇團"
+              loading="lazy"
+              style="--focus-x: 50%; --focus-y: 35%;"
+              onerror="this.style.display='none';"
+            >
 
-        <!-- 8/1 -->
-        <div class="schedule-panel is-active" id="day1">
+            <div class="performer-overlay"></div>
 
-          <div class="schedule-date-heading">
-            <div>
-              <span>DAY 1</span>
-              <h3>8月1日舞台流程</h3>
+            <div class="performer-time">
+              13:00－14:00
             </div>
 
-            <strong>親子歡樂日</strong>
+            <div class="performer-info">
+              <span>兒童劇場</span>
+              <h4>蘋果兒童劇團</h4>
+            </div>
           </div>
+        </article>
 
-          <div class="schedule-table">
+        <!-- 喬克叔叔 -->
+        <article class="performer-card">
+          <div class="performer-photo">
+            <span class="performer-placeholder">
+              喬克叔叔照片
+            </span>
 
-            <article class="schedule-row">
-              <time>13:00－14:00</time>
-              <div>
-                <span class="program-tag">兒童劇場</span>
-                <h4>蘋果兒童劇團</h4>
-              </div>
-            </article>
+            <img
+              src="images/performers/0801-joker.jpg"
+              alt="喬克叔叔腹語魔術"
+              loading="lazy"
+              style="--focus-x: 50%; --focus-y: 25%;"
+              onerror="this.style.display='none';"
+            >
 
-            <article class="schedule-row">
-              <time>14:00－14:30</time>
-              <div>
-                <span class="program-tag">腹語魔術</span>
-                <h4>喬克叔叔腹語魔術</h4>
-              </div>
-            </article>
+            <div class="performer-overlay"></div>
 
-            <article class="schedule-row">
-              <time>14:30－15:00</time>
-              <div>
-                <span class="program-tag">音樂演出</span>
-                <h4>Jhall 樂團</h4>
-              </div>
-            </article>
-
-            <article class="schedule-row featured">
-              <time>15:00－16:00</time>
-              <div>
-                <span class="program-tag">人氣見面會</span>
-                <h4>波力救援小英雄＆發桐醬見面會</h4>
-              </div>
-            </article>
-
-            <article class="schedule-row">
-              <time>16:00－16:30</time>
-              <div>
-                <span class="program-tag">氣球表演</span>
-                <h4>氣球大叔 Sony</h4>
-              </div>
-            </article>
-
-            <article class="schedule-row featured">
-              <time>16:30－17:30</time>
-              <div>
-                <span class="program-tag">親子舞台</span>
-                <h4>東森 YOYO</h4>
-              </div>
-            </article>
-
-            <article class="schedule-row raffle-row">
-              <time>17:30－18:00</time>
-              <div>
-                <span class="program-tag">LUCKY DRAW</span>
-                <h4>摸彩活動</h4>
-              </div>
-            </article>
-
-          </div>
-        </div>
-
-        <!-- 8/2 -->
-        <div class="schedule-panel" id="day2">
-
-          <div class="schedule-date-heading">
-            <div>
-              <span>DAY 2</span>
-              <h3>8月2日舞台流程</h3>
+            <div class="performer-time">
+              14:00－14:30
             </div>
 
-            <strong>開幕音樂日</strong>
+            <div class="performer-info">
+              <span>腹語魔術</span>
+              <h4>喬克叔叔</h4>
+            </div>
+          </div>
+        </article>
+
+        <!-- Jhall -->
+        <article class="performer-card">
+          <div class="performer-photo">
+            <span class="performer-placeholder">
+              Jhall 樂團照片
+            </span>
+
+            <img
+              src="images/performers/0801-jhall.jpg"
+              alt="Jhall 樂團"
+              loading="lazy"
+              style="--focus-x: 50%; --focus-y: 40%;"
+              onerror="this.style.display='none';"
+            >
+
+            <div class="performer-overlay"></div>
+
+            <div class="performer-time">
+              14:30－15:00
+            </div>
+
+            <div class="performer-info">
+              <span>音樂演出</span>
+              <h4>Jhall 樂團</h4>
+            </div>
+          </div>
+        </article>
+
+        <!-- 波力＆發桐醬 -->
+        <article class="performer-card performer-card-featured">
+          <div class="performer-photo">
+            <span class="performer-placeholder">
+              波力救援小英雄＆發桐醬照片
+            </span>
+
+            <img
+              src="images/performers/0801-poly-fatung.jpg"
+              alt="波力救援小英雄與發桐醬見面會"
+              loading="lazy"
+              style="--focus-x: 50%; --focus-y: 40%;"
+              onerror="this.style.display='none';"
+            >
+
+            <div class="performer-overlay"></div>
+
+            <div class="performer-time">
+              15:00－16:00
+            </div>
+
+            <div class="performer-info">
+              <span>人氣見面會</span>
+              <h4>波力救援小英雄<br>＆發桐醬見面會</h4>
+            </div>
+          </div>
+        </article>
+
+        <!-- 氣球大叔 Sony -->
+        <article class="performer-card">
+          <div class="performer-photo">
+            <span class="performer-placeholder">
+              氣球大叔 Sony 照片
+            </span>
+
+            <img
+              src="images/performers/0801-sony.jpg"
+              alt="氣球大叔 Sony"
+              loading="lazy"
+              style="--focus-x: 50%; --focus-y: 25%;"
+              onerror="this.style.display='none';"
+            >
+
+            <div class="performer-overlay"></div>
+
+            <div class="performer-time">
+              16:00－16:30
+            </div>
+
+            <div class="performer-info">
+              <span>氣球表演</span>
+              <h4>氣球大叔 Sony</h4>
+            </div>
+          </div>
+        </article>
+
+        <!-- 東森 YOYO -->
+        <article class="performer-card performer-card-wide">
+          <div class="performer-photo">
+            <span class="performer-placeholder">
+              東森 YOYO 照片
+            </span>
+
+            <img
+              src="images/performers/0801-yoyo.jpg"
+              alt="東森 YOYO"
+              loading="lazy"
+              style="--focus-x: 50%; --focus-y: 35%;"
+              onerror="this.style.display='none';"
+            >
+
+            <div class="performer-overlay"></div>
+
+            <div class="performer-time">
+              16:30－17:30
+            </div>
+
+            <div class="performer-info">
+              <span>親子舞台</span>
+              <h4>東森 YOYO</h4>
+            </div>
+          </div>
+        </article>
+
+        <!-- 摸彩 -->
+        <article class="program-special-card">
+          <div>
+            <span>LUCKY DRAW</span>
+            <time>17:30－18:00</time>
+            <h4>摸彩活動</h4>
+            <p>多項人氣家電與 A ee mi 聯名好禮，等你帶回家。</p>
           </div>
 
-          <div class="schedule-table">
-
-            <article class="schedule-row featured">
-              <time>10:00－10:40</time>
-              <div>
-                <span class="program-tag">OPENING</span>
-                <h4>開幕式</h4>
-              </div>
-            </article>
-
-            <article class="schedule-row">
-              <time>10:40－11:10</time>
-              <div>
-                <span class="program-tag">泡泡表演</span>
-                <h4>猴子老師泡泡表演</h4>
-              </div>
-            </article>
-
-            <article class="schedule-row">
-              <time>11:10－11:40</time>
-              <div>
-                <span class="program-tag">氣球表演</span>
-                <h4>呱呱姐姐歡樂小丑氣球秀</h4>
-              </div>
-            </article>
-
-            <article class="schedule-row">
-              <time>11:40－13:10</time>
-              <div>
-                <span class="program-tag">傳統戲曲</span>
-                <h4>五洲園掌中劇團</h4>
-              </div>
-            </article>
-
-            <article class="schedule-row">
-              <time>13:10－13:40</time>
-              <div>
-                <span class="program-tag">舞台演出</span>
-                <h4>鈴極限</h4>
-              </div>
-            </article>
-
-            <article class="schedule-row">
-              <time>13:40－14:05</time>
-              <div>
-                <span class="program-tag">音樂演出</span>
-                <h4>Yappy</h4>
-              </div>
-            </article>
-
-            <article class="schedule-row">
-              <time>14:05－14:45</time>
-              <div>
-                <span class="program-tag">音樂演出</span>
-                <h4>粹垢 TRAEGO</h4>
-              </div>
-            </article>
-
-            <article class="schedule-row">
-              <time>14:45－15:15</time>
-              <div>
-                <span class="program-tag">音樂演出</span>
-                <h4>崴崴孟孟</h4>
-              </div>
-            </article>
-
-            <article class="schedule-row">
-              <time>15:15－15:55</time>
-              <div>
-                <span class="program-tag">樂團演出</span>
-                <h4>無妄合作社</h4>
-              </div>
-            </article>
-
-            <article class="schedule-row">
-              <time>15:55－16:35</time>
-              <div>
-                <span class="program-tag">樂團演出</span>
-                <h4>庸俗救星</h4>
-              </div>
-            </article>
-
-            <article class="schedule-row featured">
-              <time>16:35－17:00</time>
-              <div>
-                <span class="program-tag">藝人演出</span>
-                <h4>婁峻碩 SHOU</h4>
-              </div>
-            </article>
-
-            <article class="schedule-row featured">
-              <time>17:00－17:30</time>
-              <div>
-                <span class="program-tag">藝人演出</span>
-                <h4>小鐘</h4>
-              </div>
-            </article>
-
-            <article class="schedule-row raffle-row">
-              <time>17:30－18:00</time>
-              <div>
-                <span class="program-tag">LUCKY DRAW</span>
-                <h4>摸彩活動</h4>
-              </div>
-            </article>
-
-          </div>
-        </div>
+          <a href="#raffle">查看摸彩好禮 →</a>
+        </article>
 
       </div>
-    </section>
+    </div>
+
+    <!-- =========================
+         8月2日
+    ========================== -->
+    <div class="lineup-panel" id="lineup-day2">
+
+      <div class="lineup-day-heading">
+        <div>
+          <span>DAY 2 · SUNDAY</span>
+          <h3>8月2日演出陣容</h3>
+        </div>
+
+        <p>開幕活動・親子演出・樂團・人氣藝人</p>
+      </div>
+
+      <div class="performer-grid">
+
+        <!-- 開幕式 -->
+        <article class="program-special-card program-opening">
+          <div>
+            <span>OPENING CEREMONY</span>
+            <time>10:00－10:40</time>
+            <h4>悠遊三鶯開幕式</h4>
+            <p>與現場貴賓及表演團隊，一起揭開主場活動序幕。</p>
+          </div>
+        </article>
+
+        <!-- 猴子老師 -->
+        <article class="performer-card">
+          <div class="performer-photo">
+            <span class="performer-placeholder">
+              猴子老師照片
+            </span>
+
+            <img
+              src="images/performers/0802-monkey.jpg"
+              alt="猴子老師泡泡表演"
+              loading="lazy"
+              style="--focus-x: 50%; --focus-y: 25%;"
+              onerror="this.style.display='none';"
+            >
+
+            <div class="performer-overlay"></div>
+
+            <div class="performer-time">
+              10:40－11:10
+            </div>
+
+            <div class="performer-info">
+              <span>泡泡表演</span>
+              <h4>猴子老師</h4>
+            </div>
+          </div>
+        </article>
+
+        <!-- 呱呱姐姐 -->
+        <article class="performer-card">
+          <div class="performer-photo">
+            <span class="performer-placeholder">
+              呱呱姐姐照片
+            </span>
+
+            <img
+              src="images/performers/0802-guagua.jpg"
+              alt="呱呱姐姐歡樂小丑氣球秀"
+              loading="lazy"
+              style="--focus-x: 50%; --focus-y: 25%;"
+              onerror="this.style.display='none';"
+            >
+
+            <div class="performer-overlay"></div>
+
+            <div class="performer-time">
+              11:10－11:40
+            </div>
+
+            <div class="performer-info">
+              <span>小丑氣球秀</span>
+              <h4>呱呱姐姐</h4>
+            </div>
+          </div>
+        </article>
+
+        <!-- 五洲園 -->
+        <article class="performer-card performer-card-wide">
+          <div class="performer-photo">
+            <span class="performer-placeholder">
+              五洲園掌中劇團照片
+            </span>
+
+            <img
+              src="images/performers/0802-wuzhou.jpg"
+              alt="五洲園掌中劇團"
+              loading="lazy"
+              style="--focus-x: 50%; --focus-y: 40%;"
+              onerror="this.style.display='none';"
+            >
+
+            <div class="performer-overlay"></div>
+
+            <div class="performer-time">
+              11:40－13:10
+            </div>
+
+            <div class="performer-info">
+              <span>傳統戲曲</span>
+              <h4>五洲園掌中劇團</h4>
+            </div>
+          </div>
+        </article>
+
+        <!-- 鈴極限 -->
+        <article class="performer-card">
+          <div class="performer-photo">
+            <span class="performer-placeholder">
+              鈴極限照片
+            </span>
+
+            <img
+              src="images/performers/0802-lingjixian.jpg"
+              alt="鈴極限"
+              loading="lazy"
+              style="--focus-x: 50%; --focus-y: 35%;"
+              onerror="this.style.display='none';"
+            >
+
+            <div class="performer-overlay"></div>
+
+            <div class="performer-time">
+              13:10－13:40
+            </div>
+
+            <div class="performer-info">
+              <span>舞台演出</span>
+              <h4>鈴極限</h4>
+            </div>
+          </div>
+        </article>
+
+        <!-- Yappy -->
+        <article class="performer-card">
+          <div class="performer-photo">
+            <span class="performer-placeholder">
+              Yappy 照片
+            </span>
+
+            <img
+              src="images/performers/0802-yappy.jpg"
+              alt="Yappy"
+              loading="lazy"
+              style="--focus-x: 50%; --focus-y: 25%;"
+              onerror="this.style.display='none';"
+            >
+
+            <div class="performer-overlay"></div>
+
+            <div class="performer-time">
+              13:40－14:05
+            </div>
+
+            <div class="performer-info">
+              <span>音樂演出</span>
+              <h4>Yappy</h4>
+            </div>
+          </div>
+        </article>
+
+        <!-- TRAEGO -->
+        <article class="performer-card performer-card-wide">
+          <div class="performer-photo">
+            <span class="performer-placeholder">
+              粹垢 TRAEGO 照片
+            </span>
+
+            <img
+              src="images/performers/0802-traego.jpg"
+              alt="粹垢 TRAEGO"
+              loading="lazy"
+              style="--focus-x: 50%; --focus-y: 42%;"
+              onerror="this.style.display='none';"
+            >
+
+            <div class="performer-overlay"></div>
+
+            <div class="performer-time">
+              14:05－14:45
+            </div>
+
+            <div class="performer-info">
+              <span>音樂演出</span>
+              <h4>粹垢 TRAEGO</h4>
+            </div>
+          </div>
+        </article>
+
+        <!-- 崴崴孟孟 -->
+        <article class="performer-card">
+          <div class="performer-photo">
+            <span class="performer-placeholder">
+              崴崴孟孟照片
+            </span>
+
+            <img
+              src="images/performers/0802-weiwei.jpg"
+              alt="崴崴孟孟"
+              loading="lazy"
+              style="--focus-x: 50%; --focus-y: 30%;"
+              onerror="this.style.display='none';"
+            >
+
+            <div class="performer-overlay"></div>
+
+            <div class="performer-time">
+              14:45－15:15
+            </div>
+
+            <div class="performer-info">
+              <span>音樂演出</span>
+              <h4>崴崴孟孟</h4>
+            </div>
+          </div>
+        </article>
+
+        <!-- 無妄合作社 -->
+        <article class="performer-card performer-card-wide">
+          <div class="performer-photo">
+            <span class="performer-placeholder">
+              無妄合作社照片
+            </span>
+
+            <img
+              src="images/performers/0802-wuwang.jpg"
+              alt="無妄合作社"
+              loading="lazy"
+              style="--focus-x: 50%; --focus-y: 40%;"
+              onerror="this.style.display='none';"
+            >
+
+            <div class="performer-overlay"></div>
+
+            <div class="performer-time">
+              15:15－15:55
+            </div>
+
+            <div class="performer-info">
+              <span>樂團演出</span>
+              <h4>無妄合作社</h4>
+            </div>
+          </div>
+        </article>
+
+        <!-- 庸俗救星 -->
+        <article class="performer-card performer-card-wide">
+          <div class="performer-photo">
+            <span class="performer-placeholder">
+              庸俗救星照片
+            </span>
+
+            <img
+              src="images/performers/0802-yongsu.jpg"
+              alt="庸俗救星"
+              loading="lazy"
+              style="--focus-x: 50%; --focus-y: 40%;"
+              onerror="this.style.display='none';"
+            >
+
+            <div class="performer-overlay"></div>
+
+            <div class="performer-time">
+              15:55－16:35
+            </div>
+
+            <div class="performer-info">
+              <span>樂團演出</span>
+              <h4>庸俗救星</h4>
+            </div>
+          </div>
+        </article>
+
+        <!-- 婁峻碩 -->
+        <article class="performer-card performer-card-featured">
+          <div class="performer-photo">
+            <span class="performer-placeholder">
+              婁峻碩 SHOU 照片
+            </span>
+
+            <img
+              src="images/performers/0802-shou.jpg"
+              alt="婁峻碩 SHOU"
+              loading="lazy"
+              style="--focus-x: 50%; --focus-y: 20%;"
+              onerror="this.style.display='none';"
+            >
+
+            <div class="performer-overlay"></div>
+
+            <div class="performer-time">
+              16:35－17:00
+            </div>
+
+            <div class="performer-info">
+              <span>人氣藝人</span>
+              <h4>婁峻碩 SHOU</h4>
+            </div>
+          </div>
+        </article>
+
+        <!-- 小鐘 -->
+        <article class="performer-card performer-card-featured">
+          <div class="performer-photo">
+            <span class="performer-placeholder">
+              小鐘照片
+            </span>
+
+            <img
+              src="images/performers/0802-xiaozhong.jpg"
+              alt="小鐘"
+              loading="lazy"
+              style="--focus-x: 50%; --focus-y: 20%;"
+              onerror="this.style.display='none';"
+            >
+
+            <div class="performer-overlay"></div>
+
+            <div class="performer-time">
+              17:00－17:30
+            </div>
+
+            <div class="performer-info">
+              <span>人氣藝人</span>
+              <h4>小鐘</h4>
+            </div>
+          </div>
+        </article>
+
+        <!-- 摸彩 -->
+        <article class="program-special-card">
+          <div>
+            <span>LUCKY DRAW</span>
+            <time>17:30－18:00</time>
+            <h4>摸彩活動</h4>
+            <p>多項人氣家電與 A ee mi 聯名好禮，等你帶回家。</p>
+          </div>
+
+          <a href="#raffle">查看摸彩好禮 →</a>
+        </article>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+    
 
     <!-- 摸彩 -->
     <section class="section raffle-page-section" id="raffle">
