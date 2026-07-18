@@ -3,115 +3,536 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>悠遊三鶯｜活動官網</title>
+
+  <title>悠遊三鶯｜搭上 731 一起去三鶯</title>
+
+  <meta
+    name="description"
+    content="跟著 A ee mi 筆下的喵喵與藍狗，一起搭上 731，探索三峽、鶯歌的文化風景、合作店家、城市解謎與系列活動。"
+  />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+
+  <!-- 網站導覽列 -->
   <header class="site-header">
-    <a class="logo" href="#top">悠遊三鶯</a>
-    <nav>
-      <a href="#news">最新消息</a>
-      <a href="#info">活動介紹</a>
-      <a href="#series">系列活動</a>
-      <a href="#shops">合作店家優惠</a>
-      <a href="#photo-call">攝影比賽專區</a>
-      <a href="#video">影音專區</a>
-      <a href="#traffic">交通資訊</a>
-    </nav>
+    <div class="header-inner">
+
+      <a class="logo" href="#top" aria-label="回到悠遊三鶯首頁">
+        悠遊三鶯
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="開啟選單"
+        aria-expanded="false"
+        aria-controls="main-nav"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-nav" id="main-nav">
+        <a href="#news">最新消息</a>
+        <a href="#about">活動介紹</a>
+        <a href="#events">系列活動</a>
+        <a href="#shops">合作店家優惠</a>
+        <a href="#photo">攝影比賽專區</a>
+        <a href="#video">影音專區</a>
+        <a href="#traffic">交通資訊</a>
+      </nav>
+
+    </div>
   </header>
 
   <main id="top">
-    <section class="hero">
-      <div class="hero-visual">
-        <img src="kv.png" alt="悠遊三鶯主視覺">
+
+    <!-- 首頁滿版 Banner -->
+    <section class="hero-banner" aria-label="悠遊三鶯活動主視覺">
+      <img
+        src="kv.png"
+        alt="2026 悠遊三鶯，搭上 731 一起去三鶯"
+      >
+
+      <a class="scroll-down" href="#news" aria-label="向下查看活動內容">
+        <span>SCROLL</span>
+        <i></i>
+      </a>
+    </section>
+
+    <!-- 首頁快速資訊 -->
+    <section class="quick-info" aria-label="活動重點資訊">
+      <div class="quick-info-inner">
+
+        <article class="quick-info-item">
+          <span class="quick-label">活動期間</span>
+          <strong>2026.08.01－08.31</strong>
+        </article>
+
+        <article class="quick-info-item">
+          <span class="quick-label">活動地點</span>
+          <strong>三峽・鶯歌</strong>
+        </article>
+
+        <article class="quick-info-item">
+          <span class="quick-label">漫遊方式</span>
+          <strong>731・捷運・YouBike</strong>
+        </article>
+
+        <article class="quick-info-item">
+          <span class="quick-label">活動亮點</span>
+          <strong>解謎・優惠・攝影</strong>
+        </article>
+
       </div>
-      <div class="hero-copy">
-        <p class="eyebrow">A ee mi × 三鶯漫遊</p>
-        <h1>不趕路，<br>一起發現三鶯的小美好</h1>
-        <p>串聯三峽、鶯歌、新北市客家文化園區、陶瓷博物館與周邊商圈，透過觀光小巴、系列活動與攝影徵件，邀請民眾用輕鬆的方式走進三鶯。</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#info">查看活動</a>
-          <a class="btn ghost" href="#photo-call">參加徵件</a>
+    </section>
+
+    <!-- 最新消息 -->
+    <section class="section news-section" id="news">
+      <div class="container">
+
+        <div class="section-heading heading-row">
+          <div>
+            <span class="section-en">NEWS</span>
+            <h2>最新消息</h2>
+            <p>掌握活動公告、報名資訊、徵件時程與最新活動內容。</p>
+          </div>
+
+          <a class="text-link" href="#">
+            查看全部消息
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="news-list">
+
+          <a class="news-item" href="#">
+            <time datetime="2026-08-01">
+              <span>08.01</span>
+              <small>2026</small>
+            </time>
+
+            <div class="news-content">
+              <span class="news-tag">活動公告</span>
+              <h3>悠遊三鶯活動正式開跑，系列活動資訊陸續公開</h3>
+            </div>
+
+            <span class="news-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="news-item" href="#">
+            <time datetime="2026-08-01">
+              <span>08.01</span>
+              <small>2026</small>
+            </time>
+
+            <div class="news-content">
+              <span class="news-tag">攝影徵件</span>
+              <h3>用四張橫式照片，記錄一段屬於你的三鶯旅程</h3>
+            </div>
+
+            <span class="news-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="news-item" href="#">
+            <time>
+              <span>COMING</span>
+              <small>SOON</small>
+            </time>
+
+            <div class="news-content">
+              <span class="news-tag">人氣票選</span>
+              <h3>攝影作品人氣票選時程與投票方式即將公布</h3>
+            </div>
+
+            <span class="news-arrow" aria-hidden="true">→</span>
+          </a>
+
         </div>
       </div>
     </section>
 
-    <section class="section" id="info">
-      <div class="section-title"><span>01</span><h2>活動介紹</h2><p>統整介紹 IP 主題、觀光推廣與整體活動資訊。</p></div>
-      <div class="info-grid">
-        <article><b>活動主題</b><p>悠遊三鶯，跟著 A ee mi 一起發現旅途中的小美好。</p></article>
-        <article><b>活動期間</b><p>2026/08/01－2026/08/31</p></article>
-        <article><b>活動地點</b><p>三峽、鶯歌及周邊合作場域。</p></article>
+    <!-- 活動介紹 -->
+    <section class="section about-section" id="about">
+      <div class="container">
+
+        <div class="section-heading centered">
+          <span class="section-en">ABOUT</span>
+          <h2>跟著喵喵與藍狗，一起悠遊三鶯</h2>
+          <p>
+            從交通出發，串聯地方文化、特色店家與城市風景，
+            用自己的步調發現旅途中容易錯過的小細節。
+          </p>
+        </div>
+
+        <div class="about-layout">
+
+          <div class="about-story">
+            <span class="story-label">A ee mi × 三鶯漫遊</span>
+
+            <h3>不趕路，慢慢發現三鶯的小美好</h3>
+
+            <p>
+              今年夏天，我們攜手作家 A ee mi 筆下的療癒角色
+              「喵喵」與「藍狗」，邀請大家搭乘 731 公車、三鶯線捷運及
+              YouBike，展開一段輕鬆自在的三鶯小旅行。
+            </p>
+
+            <p>
+              活動串聯三峽、鶯歌、新北市客家文化園區、
+              鶯歌陶瓷博物館、在地商圈與特色店家，
+              透過城市解謎、店家優惠、攝影徵件與系列活動，
+              帶大家看見更多三鶯的日常風景。
+            </p>
+
+            <a class="button button-primary" href="#events">
+              探索系列活動
+            </a>
+          </div>
+
+          <div class="about-cards">
+
+            <article class="about-card">
+              <span>01</span>
+              <h3>搭乘 731</h3>
+              <p>沿著公車路線串聯三峽、鶯歌的文化景點與生活風景。</p>
+            </article>
+
+            <article class="about-card">
+              <span>02</span>
+              <h3>城市解謎</h3>
+              <p>透過 LINE 任務、照片挑戰與趣味問答，自由探索三鶯。</p>
+            </article>
+
+            <article class="about-card">
+              <span>03</span>
+              <h3>店家優惠</h3>
+              <p>走進六間合作店家，享受活動限定體驗與專屬好禮。</p>
+            </article>
+
+            <article class="about-card">
+              <span>04</span>
+              <h3>攝影徵件</h3>
+              <p>用四張照片說一段旅程，分享你眼中的三鶯風景。</p>
+            </article>
+
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section soft" id="news">
-      <div class="section-title"><span>02</span><h2>最新消息</h2><p>活動公告、徵件提醒、票選時程與得獎資訊。</p></div>
-      <div class="news-list">
-        <a href="#"><time>08.01</time><p>悠遊三鶯活動正式開跑，系列活動與交通資訊同步公開。</p></a>
-        <a href="#"><time>08.01</time><p>攝影徵件開放投稿，歡迎用四張照片記錄你的三鶯旅程。</p></a>
-        <a href="#"><time>待公告</time><p>人氣票選作品上架與投票時間將於官網公告。</p></a>
+    <!-- 系列活動 -->
+    <section class="section events-section" id="events">
+      <div class="container">
+
+        <div class="section-heading centered">
+          <span class="section-en">EVENTS</span>
+          <h2>系列活動</h2>
+          <p>從主場活動到城市漫遊，安排一場屬於自己的三鶯旅程。</p>
+        </div>
+
+        <div class="event-grid">
+
+          <article class="event-card event-main">
+            <div class="event-number">01</div>
+
+            <div class="event-content">
+              <span class="event-type">MAIN EVENT</span>
+              <h3>悠遊三鶯主場活動</h3>
+              <p>
+                結合主題舞台、互動體驗、合作店家與地方特色內容，
+                邀請大家一起感受三鶯的文化與生活魅力。
+              </p>
+              <a href="#">查看活動資訊 →</a>
+            </div>
+          </article>
+
+          <article class="event-card event-bus">
+            <div class="event-number">02</div>
+
+            <div class="event-content">
+              <span class="event-type">BUS TOUR</span>
+              <h3>搭上 731 一起去三鶯</h3>
+              <p>
+                搭乘 731 公車走訪新北市美術館、鶯歌陶瓷博物館、
+                鶯歌老街、三號公園與孫龍步道。
+              </p>
+              <a href="#traffic">查看交通路線 →</a>
+            </div>
+          </article>
+
+          <article class="event-card event-game">
+            <div class="event-number">03</div>
+
+            <div class="event-content">
+              <span class="event-type">CITY GAME</span>
+              <h3>喵喵＆藍狗城市解謎</h3>
+              <p>
+                三條主題路線，各有不同故事與任務。
+                透過 LINE 引導、照片回傳與選擇題完成挑戰。
+              </p>
+              <a href="#">查看解謎玩法 →</a>
+            </div>
+          </article>
+
+        </div>
       </div>
     </section>
 
-    <section class="section" id="series">
-      <div class="section-title"><span>03</span><h2>系列活動</h2><p>系列活動介紹、主場活動資訊、三鶯小巴活動資訊。</p></div>
-      <div class="card-grid">
-        <article><h3>主場活動</h3><p>活動主舞台、互動體驗、聯名內容與現場亮點。</p></article>
-        <article><h3>三鶯小巴</h3><p>觀光小巴路線、班次提醒、周邊景點與推薦玩法。</p></article>
-        <article><h3>延伸體驗</h3><p>串聯三峽、鶯歌在地文化與生活風景。</p></article>
+    <!-- 合作店家優惠 -->
+    <section class="section shop-section" id="shops">
+      <div class="container">
+
+        <div class="section-heading heading-row">
+          <div>
+            <span class="section-en">LOCAL SHOPS</span>
+            <h2>合作店家優惠</h2>
+            <p>走進三鶯特色店家，體驗地方風味與活動限定好禮。</p>
+          </div>
+
+          <a class="text-link" href="#">
+            查看全部店家
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="shop-grid">
+
+          <article class="shop-card">
+            <span class="shop-area">三峽</span>
+            <h3>禾乃川國產豆製所</h3>
+            <p>免費兌換全豆豆乳 300ml 兩瓶。</p>
+            <a href="#">查看店家資訊</a>
+          </article>
+
+          <article class="shop-card">
+            <span class="shop-area">三峽</span>
+            <h3>一碗幸福好滋味</h3>
+            <p>免費兌換仙草漂浮乙杯。</p>
+            <a href="#">查看店家資訊</a>
+          </article>
+
+          <article class="shop-card">
+            <span class="shop-area">三峽</span>
+            <h3>老柴咖啡館</h3>
+            <p>消費精品咖啡，招待手作餅乾及職人濾掛咖啡包。</p>
+            <a href="#">查看店家資訊</a>
+          </article>
+
+          <article class="shop-card">
+            <span class="shop-area">鶯歌</span>
+            <h3>新旺集瓷</h3>
+            <p>器皿釉上貼花體驗優惠券乙份。</p>
+            <a href="#">查看店家資訊</a>
+          </article>
+
+          <article class="shop-card">
+            <span class="shop-area">鶯歌</span>
+            <h3>碧萃茶飲</h3>
+            <p>霜淇淋 20 元抵用券。</p>
+            <a href="#">查看店家資訊</a>
+          </article>
+
+          <article class="shop-card">
+            <span class="shop-area">鶯歌</span>
+            <h3>鮮農直賣所</h3>
+            <p>消費滿 488 元，免費獲得冰棒一支。</p>
+            <a href="#">查看店家資訊</a>
+          </article>
+
+        </div>
       </div>
     </section>
 
-    <section class="section soft" id="shops">
-      <div class="section-title"><span>04</span><h2>合作店家優惠</h2><p>合作店家介紹、優惠資訊與活動限定內容。</p></div>
-      <div class="card-grid">
-        <article><h3>特色店家</h3><p>介紹合作店家、品牌故事、推薦品項與活動限定內容。</p></article>
-        <article><h3>優惠資訊</h3><p>整理活動期間可使用的優惠、兌換方式與注意事項。</p></article>
-        <article><h3>合作地圖</h3><p>後續可加入 Google 地圖，方便民眾安排路線。</p></article>
+    <!-- 攝影比賽 -->
+    <section class="section photo-section" id="photo">
+      <div class="container">
+
+        <div class="photo-panel">
+
+          <div class="photo-copy">
+            <span class="section-en">PHOTO CONTEST</span>
+            <h2>用四張照片，<br>說一段三鶯旅程</h2>
+
+            <p>
+              以四張橫式作品，從交通、美食、店家、景點或生活觀察出發，
+              分享你在三鶯遇見的人、事、風景與旅途故事。
+            </p>
+
+            <div class="photo-actions">
+              <a class="button button-light" href="#">
+                查看徵件辦法
+              </a>
+
+              <a class="button button-outline-light" href="#">
+                前往投稿
+              </a>
+            </div>
+          </div>
+
+          <div class="photo-details">
+
+            <div class="photo-detail">
+              <span>徵件期間</span>
+              <strong>2026.08.01－08.31</strong>
+            </div>
+
+            <div class="photo-detail">
+              <span>作品規格</span>
+              <strong>每組 4 張橫式照片</strong>
+            </div>
+
+            <div class="photo-detail">
+              <span>評選方式</span>
+              <strong>專業評審＋人氣票選加分</strong>
+            </div>
+
+            <div class="photo-detail">
+              <span>投稿方式</span>
+              <strong>上傳至指定雲端表單</strong>
+            </div>
+
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="photo-call">
-      <div class="section-title"><span>05</span><h2>攝影比賽專區</h2><p>攝影徵件辦法、參賽照片展示與投稿資訊。</p></div>
-      <div class="photo-card">
-        <div><h3>用四張橫式照片，說一段三鶯旅程</h3><p>以交通、美食、店家、景點或生活觀點為拍攝方向，呈現你眼中的三鶯。</p></div>
-        <ul>
-          <li>徵件時間：8/1－8/31</li>
-          <li>作品形式：每組 4 張，需全部橫式構圖</li>
-          <li>繳件方式：上傳至指定雲端表單或投稿系統</li>
-          <li>加分項目：活動官網人氣票選，依名次給予加分</li>
-        </ul>
+    <!-- 人氣票選 -->
+    <section class="section vote-section" id="vote">
+      <div class="container">
+
+        <div class="section-heading centered">
+          <span class="section-en">VOTE</span>
+          <h2>人氣票選</h2>
+          <p>為喜歡的三鶯旅程投下一票，人氣排名可獲得評選加分。</p>
+        </div>
+
+        <div class="coming-panel">
+          <div class="coming-icon">♡</div>
+          <h3>人氣票選即將開放</h3>
+          <p>參賽作品完成初步審核後，將於活動官網公開展示。</p>
+          <span>COMING SOON</span>
+        </div>
+
       </div>
     </section>
 
-    <section class="section soft" id="vote">
-      <div class="section-title"><span>06</span><h2>人氣票選</h2><p>參賽照片展示、票選活動與排行資訊。</p></div>
-      <div class="vote-grid">
-        <article class="work-card"><div class="work-img"></div><h3>作品名稱</h3><p>票選系統建置後，可放置作品照片、作者名稱與投票按鈕。</p><button>即將開放</button></article>
-        <article class="work-card"><div class="work-img"></div><h3>作品名稱</h3><p>可設定每日一票、每作品一票，或串接驗證機制。</p><button>即將開放</button></article>
-        <article class="work-card"><div class="work-img"></div><h3>作品名稱</h3><p>可於活動結束後匯出票數，作為評分加分依據。</p><button>即將開放</button></article>
+    <!-- 影音專區 -->
+    <section class="section video-section" id="video">
+      <div class="container">
+
+        <div class="section-heading centered">
+          <span class="section-en">VIDEO</span>
+          <h2>影音專區</h2>
+          <p>跟著影片中的旅人，搭乘捷運、公車與 YouBike 漫遊三鶯。</p>
+        </div>
+
+        <div class="video-placeholder">
+          <div class="play-button" aria-hidden="true">▶</div>
+          <h3>悠遊三鶯形象影片</h3>
+          <p>影片上架後可於此嵌入 YouTube 影片。</p>
+        </div>
+
       </div>
     </section>
 
-    <section class="section" id="video">
-      <div class="section-title"><span>07</span><h2>影音專區</h2><p>定活動宣傳 CF、活動行銷影片，供民眾點閱觀看。</p></div>
-      <div class="video-box">影片上架後可嵌入 YouTube / Facebook 影片</div>
-    </section>
+    <!-- 交通資訊 -->
+    <section class="section traffic-section" id="traffic">
+      <div class="container">
 
-    <section class="section soft" id="traffic">
-      <div class="section-title"><span>08</span><h2>交通資訊</h2><p>針對活動場地大眾交通、自行開車與步行訊息整理。</p></div>
-      <div class="card-grid">
-        <article><h3>大眾交通</h3><p>捷運、火車、公車與活動接駁資訊。</p></article>
-        <article><h3>自行開車</h3><p>停車場、交通管制與建議動線。</p></article>
-        <article><h3>步行／YouBike</h3><p>周邊步行路線與 YouBike 站點整理。</p></article>
+        <div class="section-heading centered">
+          <span class="section-en">TRAFFIC</span>
+          <h2>交通資訊</h2>
+          <p>搭乘大眾運輸前往三峽、鶯歌，輕鬆展開一日漫遊。</p>
+        </div>
+
+        <div class="traffic-grid">
+
+          <article class="traffic-card">
+            <span class="traffic-icon">捷</span>
+            <h3>三鶯線捷運</h3>
+            <p>可搭乘三鶯線前往沿線景點，再轉乘公車或步行探索。</p>
+          </article>
+
+          <article class="traffic-card">
+            <span class="traffic-icon">731</span>
+            <h3>731 公車</h3>
+            <p>串聯新北市美術館、陶瓷博物館、鶯歌老街與周邊景點。</p>
+          </article>
+
+          <article class="traffic-card">
+            <span class="traffic-icon">火</span>
+            <h3>臺鐵鶯歌站</h3>
+            <p>搭乘臺鐵至鶯歌站，可步行前往老街或轉乘公車。</p>
+          </article>
+
+          <article class="traffic-card">
+            <span class="traffic-icon">U</span>
+            <h3>YouBike</h3>
+            <p>利用沿線 YouBike 站點，彈性安排短程移動與景點串聯。</p>
+          </article>
+
+        </div>
+
+        <div class="traffic-action">
+          <a class="button button-primary" href="#">
+            查看完整交通資訊
+          </a>
+        </div>
+
       </div>
     </section>
+
   </main>
 
-  <footer>© 悠遊三鶯活動官網</footer>
+  <!-- 頁尾 -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <strong>悠遊三鶯</strong>
+        <p>搭上 731，一起去三鶯。</p>
+      </div>
+
+      <div class="footer-info">
+        <p>主辦單位｜新北市政府</p>
+        <p>© 2026 悠遊三鶯活動官網</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const mainNav = document.querySelector(".main-nav");
+    const navLinks = document.querySelectorAll(".main-nav a");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = mainNav.classList.toggle("is-open");
+      menuToggle.classList.toggle("is-active", isOpen);
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mainNav.classList.remove("is-open");
+        menuToggle.classList.remove("is-active");
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  </script>
+
 </body>
 </html>
