@@ -917,6 +917,7 @@
   </footer>
 
   <script>
+    /* 手機版導覽列 */
     const menuToggle = document.querySelector(".menu-toggle");
     const mainNav = document.querySelector(".main-nav");
     const navLinks = document.querySelectorAll(".main-nav a");
@@ -938,56 +939,33 @@
       });
     }
 
-<script>
-  /* 手機版導覽列 */
-  const menuToggle = document.querySelector(".menu-toggle");
-  const mainNav = document.querySelector(".main-nav");
-  const navLinks = document.querySelectorAll(".main-nav a");
+    /* 8月1日／8月2日舞台流程切換 */
+    const programTabs = document.querySelectorAll(".program-tab");
+    const programPanels = document.querySelectorAll(".program-panel");
 
-  if (menuToggle && mainNav) {
-    menuToggle.addEventListener("click", () => {
-      const isOpen = mainNav.classList.toggle("is-open");
+    programTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const targetId = tab.dataset.program;
 
-      menuToggle.classList.toggle("is-active", isOpen);
-      menuToggle.setAttribute("aria-expanded", String(isOpen));
-    });
+        programTabs.forEach((item) => {
+          item.classList.remove("is-active");
+          item.setAttribute("aria-selected", "false");
+        });
 
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        mainNav.classList.remove("is-open");
-        menuToggle.classList.remove("is-active");
-        menuToggle.setAttribute("aria-expanded", "false");
+        programPanels.forEach((panel) => {
+          panel.classList.remove("is-active");
+        });
+
+        tab.classList.add("is-active");
+        tab.setAttribute("aria-selected", "true");
+
+        const targetPanel = document.getElementById(targetId);
+
+        if (targetPanel) {
+          targetPanel.classList.add("is-active");
+        }
       });
     });
-  }
-
-  /* 8月1日／8月2日舞台流程切換 */
-  const programTabs = document.querySelectorAll(".program-tab");
-  const programPanels = document.querySelectorAll(".program-panel");
-
-  programTabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      const targetId = tab.dataset.program;
-
-      programTabs.forEach((item) => {
-        item.classList.remove("is-active");
-        item.setAttribute("aria-selected", "false");
-      });
-
-      programPanels.forEach((panel) => {
-        panel.classList.remove("is-active");
-      });
-
-      tab.classList.add("is-active");
-      tab.setAttribute("aria-selected", "true");
-
-      const targetPanel = document.getElementById(targetId);
-
-      if (targetPanel) {
-        targetPanel.classList.add("is-active");
-      }
-    });
-  });
   </script>
 
 </body>
