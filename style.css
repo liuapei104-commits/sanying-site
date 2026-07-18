@@ -2107,3 +2107,203 @@ main {
     padding: 38px 25px;
   }
 }
+/* ========================================
+   摸彩品照片卡片
+======================================== */
+
+.prize-day-section {
+  margin-top: 82px;
+}
+
+.prize-day-section:first-of-type {
+  margin-top: 0;
+}
+
+.prize-day-heading {
+  margin-bottom: 28px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.prize-day-heading span {
+  color: #ff6685;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.prize-day-heading h3 {
+  margin: 5px 0 0;
+  color: #114c65;
+  font-size: clamp(29px, 3.5vw, 42px);
+  font-weight: 900;
+}
+
+.prize-day-heading p {
+  margin: 0;
+  color: #608293;
+  font-size: 14px;
+}
+
+.prize-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.prize-card {
+  overflow: hidden;
+  border: 1px solid rgba(8, 125, 167, 0.12);
+  border-radius: 25px;
+  background: #ffffff;
+  box-shadow: 0 15px 38px rgba(11, 101, 138, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.prize-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 48px rgba(11, 101, 138, 0.15);
+}
+
+.prize-card-featured {
+  grid-column: span 2;
+}
+
+.prize-image {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(97, 201, 230, 0.15), rgba(81, 207, 137, 0.15)),
+    #effaff;
+}
+
+.prize-card-featured .prize-image {
+  aspect-ratio: 16 / 8.2;
+}
+
+.prize-image img {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #ffffff;
+}
+
+/* 圖片還沒上傳或路徑錯誤時顯示 */
+.prize-image img:not([src]),
+.prize-image img[src=""] {
+  display: none;
+}
+
+.image-placeholder {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  color: rgba(8, 125, 167, 0.55);
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.7;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.image-placeholder::before {
+  position: absolute;
+  width: 72px;
+  height: 56px;
+  margin-top: -65px;
+  border: 3px solid rgba(8, 125, 167, 0.22);
+  border-radius: 11px;
+  content: "";
+}
+
+.image-placeholder::after {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  margin: -83px 0 0 -30px;
+  border-radius: 50%;
+  background: rgba(255, 102, 133, 0.38);
+  content: "";
+}
+
+.prize-card-content {
+  padding: 24px 25px 27px;
+}
+
+.prize-rank {
+  display: inline-flex;
+  padding: 4px 12px;
+  border-radius: 999px;
+  color: #ef4e70;
+  background: rgba(255, 102, 133, 0.11);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.prize-card-content h4 {
+  margin: 14px 0 7px;
+  color: #114c65;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1.45;
+}
+
+.prize-card-featured .prize-card-content h4 {
+  font-size: 27px;
+}
+
+.prize-card-content p {
+  margin: 0;
+  color: #608293;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* 平板 */
+@media (max-width: 950px) {
+  .prize-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .prize-card-featured {
+    grid-column: span 2;
+  }
+}
+
+/* 手機 */
+@media (max-width: 650px) {
+  .prize-day-section {
+    margin-top: 65px;
+  }
+
+  .prize-day-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .prize-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prize-card-featured {
+    grid-column: auto;
+  }
+
+  .prize-card-featured .prize-image,
+  .prize-image {
+    aspect-ratio: 4 / 3;
+  }
+
+  .prize-card-featured .prize-card-content h4 {
+    font-size: 22px;
+  }
+}
