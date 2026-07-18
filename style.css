@@ -2811,3 +2811,86 @@ main {
     padding: 3px;
   }
 }
+/* ===========================
+   Lightbox
+=========================== */
+
+.lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.9);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    z-index:99999;
+}
+
+.lightbox.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.lightbox img{
+
+    max-width:90%;
+    max-height:90%;
+    object-fit:contain;
+
+    border-radius:20px;
+    box-shadow:0 20px 60px rgba(0,0,0,.45);
+
+    animation:zoom .25s ease;
+}
+
+@keyframes zoom{
+
+from{
+
+transform:scale(.8);
+opacity:0;
+
+}
+
+to{
+
+transform:scale(1);
+opacity:1;
+
+}
+
+}
+
+.lightbox-close{
+
+position:absolute;
+
+top:25px;
+right:35px;
+
+font-size:50px;
+color:#fff;
+
+cursor:pointer;
+
+font-weight:700;
+
+user-select:none;
+
+}
+
+.program-photo img{
+
+cursor:zoom-in;
+
+transition:.25s;
+
+}
+
+.program-photo img:hover{
+
+transform:scale(1.04);
+
+}
