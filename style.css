@@ -2094,10 +2094,14 @@ main {
     content: attr(data-label);
   }
 
-  .raffle-table td:last-child,
-  .raffle-table th:last-child {
-    text-align: left;
-  }
+.raffle-table td:nth-child(3),
+.raffle-table th:nth-child(3),
+.raffle-table td:nth-child(5),
+.raffle-table th:nth-child(5) {
+  width: 110px;
+  text-align: center;
+  white-space: nowrap;
+}
 
   .event-notice-panel {
     padding: 38px 25px;
