@@ -329,6 +329,251 @@
       }
     }
 
+
+
+    /* 主活動周邊活動｜四張等比配置 */
+    .event-feature-section {
+      background:
+        radial-gradient(circle at 8% 10%, rgba(97, 201, 230, 0.13), transparent 24%),
+        radial-gradient(circle at 92% 90%, rgba(81, 207, 137, 0.12), transparent 24%),
+        #f7fcff;
+    }
+
+    .event-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .event-feature-card,
+    .event-feature-card.feature-wide {
+      grid-column: auto;
+      min-width: 0;
+      min-height: 430px;
+      padding: 38px;
+      display: flex;
+      flex-direction: column;
+      color: inherit;
+      background: #ffffff;
+      border: 1px solid rgba(8, 125, 167, 0.13);
+      border-radius: 28px;
+      box-shadow: 0 16px 40px rgba(11, 101, 138, 0.08);
+    }
+
+    .event-feature-card.feature-wide::after {
+      border-color: rgba(8, 125, 167, 0.045);
+    }
+
+    .feature-wide .feature-kicker {
+      color: #ef4e70;
+      background: rgba(255, 102, 133, 0.11);
+    }
+
+    .event-feature-card h3,
+    .feature-wide h3 {
+      margin: 16px 0 13px;
+      color: #114c65;
+      font-size: clamp(25px, 2.6vw, 34px);
+      line-height: 1.35;
+    }
+
+    .event-feature-card > p,
+    .feature-wide > p {
+      max-width: none;
+      color: #608293;
+      font-size: 14px;
+      line-height: 1.85;
+    }
+
+    .feature-meta {
+      margin-top: 22px;
+    }
+
+    .feature-meta div {
+      grid-template-columns: 88px minmax(0, 1fr);
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(8, 125, 167, 0.1);
+    }
+
+    .feature-wide .feature-meta span {
+      color: #ff6685;
+    }
+
+    .feature-wide .feature-meta strong {
+      color: #155f7d;
+    }
+
+    .feature-note,
+    .feature-wide .feature-note {
+      margin-top: auto;
+      padding: 11px 15px;
+      color: #087da7;
+      background: #eaf8fd;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .feature-number,
+    .feature-wide .feature-number {
+      color: rgba(8, 125, 167, 0.09);
+      font-size: 58px;
+    }
+
+    .market-type-grid {
+      margin-top: auto;
+      padding-top: 22px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .market-type {
+      padding: 15px;
+    }
+
+    .market-type strong {
+      font-size: 14px;
+    }
+
+    .market-type span {
+      font-size: 11px;
+    }
+
+    /* 摸彩參加方式，與摸彩獎品放在同一區 */
+    .raffle-method-panel {
+      margin-bottom: 34px;
+      padding: 30px 34px;
+      display: grid;
+      grid-template-columns: 74px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 25px;
+      border-radius: 28px;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at 92% 15%, rgba(255, 232, 117, 0.28), transparent 23%),
+        linear-gradient(135deg, #087da7, #50ca86);
+      box-shadow: 0 20px 48px rgba(8, 125, 167, 0.18);
+    }
+
+    .raffle-method-icon {
+      width: 68px;
+      height: 68px;
+      display: grid;
+      place-items: center;
+      border-radius: 22px;
+      color: #087da7;
+      background: #ffe875;
+      font-size: 25px;
+      font-weight: 900;
+    }
+
+    .raffle-method-label {
+      color: #ffe875;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.17em;
+    }
+
+    .raffle-method-copy h3 {
+      margin: 5px 0 6px;
+      color: #ffffff;
+      font-size: 25px;
+      font-weight: 900;
+    }
+
+    .raffle-method-copy p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.83);
+    }
+
+    .raffle-method-copy strong {
+      color: #ffe875;
+    }
+
+    .raffle-method-time {
+      min-width: 185px;
+      padding-left: 25px;
+      border-left: 1px solid rgba(255, 255, 255, 0.25);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .raffle-method-time span {
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .raffle-method-time strong {
+      margin-top: 3px;
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      .event-feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .event-feature-card,
+      .event-feature-card.feature-wide {
+        min-height: auto;
+      }
+
+      .feature-note,
+      .feature-wide .feature-note,
+      .market-type-grid {
+        margin-top: 24px;
+      }
+
+      .raffle-method-panel {
+        grid-template-columns: 64px 1fr;
+      }
+
+      .raffle-method-time {
+        grid-column: 1 / -1;
+        padding: 18px 0 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+        border-left: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .event-feature-card,
+      .event-feature-card.feature-wide {
+        padding: 30px 24px;
+        border-radius: 23px;
+      }
+
+      .event-feature-card h3,
+      .feature-wide h3 {
+        padding-right: 40px;
+        font-size: 25px;
+      }
+
+      .feature-meta div {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+
+      .market-type-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .raffle-method-panel {
+        padding: 25px;
+        grid-template-columns: 1fr;
+      }
+
+      .raffle-method-icon {
+        width: 58px;
+        height: 58px;
+      }
+
+      .raffle-method-time {
+        grid-column: auto;
+      }
+    }
   </style>
 </head>
 
@@ -475,58 +720,44 @@
 
 
 
-    <!-- 主場活動亮點 -->
-    <section class="section event-feature-section" id="event-highlights">
+    <!-- 主活動周邊活動 -->
+    <section class="section event-feature-section" id="side-activities">
       <div class="container">
 
         <div class="section-heading centered">
-          <span class="section-en">EVENT HIGHLIGHTS</span>
-          <h2>主場活動亮點</h2>
-          <p>除了舞台演出與摸彩，現場還有聯名拍貼、闖關好禮、搭車優惠與主題市集。</p>
+          <span class="section-en">SIDE ACTIVITIES</span>
+          <h2>主活動周邊活動</h2>
+          <p>除了主舞台演出，現場還有闖關好禮、搭車優惠、三鶯特色市集與聯名限定拍貼體驗。</p>
         </div>
 
         <div class="event-feature-grid">
 
-          <article class="event-feature-card feature-wide">
-            <span class="feature-number">01</span>
-            <span class="feature-kicker">LIMITED PHOTO BOOTH</span>
-            <h3>喵喵＆藍狗<br>聯名限定拍貼機</h3>
-            <p>限定主題邊框 × 夏日悠遊派對，把三鶯旅行回憶印成一張專屬紀念照。</p>
-
-            <div class="feature-meta">
-              <div>
-                <span>體驗時間</span>
-                <strong>8/1（六）13:00－17:00<br>8/2（日）10:00－17:30</strong>
-              </div>
-              <div>
-                <span>體驗方式</span>
-                <strong>每組限時 3 分鐘，依當日現場領取號碼牌體驗。</strong>
-              </div>
-            </div>
-
-            <div class="feature-note">號碼牌及體驗名額數量有限，發完為止。</div>
-          </article>
-
           <article class="event-feature-card">
-            <span class="feature-number">02</span>
+            <span class="feature-number">01</span>
             <span class="feature-kicker">MISSION CHALLENGE</span>
             <h3>闖關拿限量好禮</h3>
             <p>至大會服務台領取闖關券，完成指定 3 項任務，即可兌換活動限定好禮。</p>
 
             <div class="feature-meta">
               <div>
-                <span>活動時間</span>
-                <strong>8/1（六）13:00－17:00，限量 200 組<br>8/2（日）10:00－17:00，限量 300 組</strong>
+                <span>8月1日</span>
+                <strong>13:00－17:00｜限量 200 組</strong>
+              </div>
+              <div>
+                <span>8月2日</span>
+                <strong>10:00－17:00｜限量 300 組</strong>
               </div>
               <div>
                 <span>參加地點</span>
                 <strong>大會服務台</strong>
               </div>
             </div>
+
+            <div class="feature-note">好禮數量有限，兌完為止。</div>
           </article>
 
           <article class="event-feature-card">
-            <span class="feature-number">03</span>
+            <span class="feature-number">02</span>
             <span class="feature-kicker">BUS BONUS</span>
             <h3>搭 731，拿好康</h3>
             <p>主活動期間搭乘 731 公車，於「新北市客家文化園區站」下車，即可獲得活動市集消費券 50 元。</p>
@@ -538,7 +769,7 @@
               </div>
               <div>
                 <span>領取方式</span>
-                <strong>下車後依現場工作人員指引領取。</strong>
+                <strong>下車後依現場工作人員指引領取</strong>
               </div>
             </div>
 
@@ -546,10 +777,10 @@
           </article>
 
           <article class="event-feature-card">
-            <span class="feature-number">04</span>
+            <span class="feature-number">03</span>
             <span class="feature-kicker">731 GO SANYING MARKET</span>
             <h3>731 去三鶯市集</h3>
-            <p>集結 30 攤在地特色商家、聯名小農品牌、文創選物、手作體驗與特色美食，一次逛遍三鶯好味道與好創意。</p>
+            <p>集結 30 攤在地特色商家、聯名小農品牌、文創選物、手作體驗與特色美食，一次感受三鶯的地方風味。</p>
 
             <div class="market-type-grid">
               <div class="market-type">
@@ -568,23 +799,27 @@
           </article>
 
           <article class="event-feature-card">
-            <span class="feature-number">05</span>
-            <span class="feature-kicker">LUCKY DRAW TICKET</span>
-            <h3>市集消費，參加摸彩</h3>
-            <p>於活動現場購買市集消費券，每購買 200 元即可獲得摸彩券 1 張，參加當日摸彩活動。</p>
+            <span class="feature-number">04</span>
+            <span class="feature-kicker">LIMITED PHOTO BOOTH</span>
+            <h3>喵喵＆藍狗<br>聯名限定拍貼機</h3>
+            <p>限定主題邊框 × 夏日悠遊派對，把三鶯旅行回憶印成一張專屬紀念照。</p>
 
             <div class="feature-meta">
               <div>
-                <span>換算方式</span>
-                <strong>市集消費券 200 元＝摸彩券 1 張</strong>
+                <span>8月1日</span>
+                <strong>13:00－17:00</strong>
               </div>
               <div>
-                <span>摸彩時間</span>
-                <strong>8/1、8/2 每日 17:30－18:00</strong>
+                <span>8月2日</span>
+                <strong>10:00－17:30</strong>
+              </div>
+              <div>
+                <span>體驗方式</span>
+                <strong>每組限時 3 分鐘，依當日現場領取號碼牌體驗</strong>
               </div>
             </div>
 
-            <div class="feature-note">摸彩券使用方式、投入時間及兌獎規定依現場公告為準。</div>
+            <div class="feature-note">號碼牌及體驗名額數量有限，發完為止。</div>
           </article>
 
         </div>
@@ -1096,6 +1331,25 @@
             8月1日與8月2日皆安排摸彩活動，
             每日頭獎內容不同，還有多項 A ee mi 聯名好禮。
           </p>
+        </div>
+
+        <!-- 摸彩參加方式 -->
+        <div class="raffle-method-panel">
+          <div class="raffle-method-icon" aria-hidden="true">券</div>
+
+          <div class="raffle-method-copy">
+            <span class="raffle-method-label">HOW TO JOIN</span>
+            <h3>購買市集消費券，獲得摸彩券</h3>
+            <p>
+              活動現場購買市集消費券滿 <strong>200 元</strong>，
+              即可獲得 <strong>摸彩券 1 張</strong>，參加當日摸彩活動。
+            </p>
+          </div>
+
+          <div class="raffle-method-time">
+            <span>每日摸彩時間</span>
+            <strong>17:30－18:00</strong>
+          </div>
         </div>
 
         <div class="raffle-highlight-grid">
