@@ -1058,32 +1058,32 @@
       });
     }
 
-    const scheduleTabs = document.querySelectorAll(".schedule-tab");
-    const schedulePanels = document.querySelectorAll(".schedule-panel");
+const lineupTabs = document.querySelectorAll(".lineup-tab");
+const lineupPanels = document.querySelectorAll(".lineup-panel");
 
-    scheduleTabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        const targetId = tab.dataset.schedule;
+lineupTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    const targetId = tab.dataset.lineup;
 
-        scheduleTabs.forEach((item) => {
-          item.classList.remove("is-active");
-          item.setAttribute("aria-selected", "false");
-        });
-
-        schedulePanels.forEach((panel) => {
-          panel.classList.remove("is-active");
-        });
-
-        tab.classList.add("is-active");
-        tab.setAttribute("aria-selected", "true");
-
-        const targetPanel = document.getElementById(targetId);
-
-        if (targetPanel) {
-          targetPanel.classList.add("is-active");
-        }
-      });
+    lineupTabs.forEach((item) => {
+      item.classList.remove("is-active");
+      item.setAttribute("aria-selected", "false");
     });
+
+    lineupPanels.forEach((panel) => {
+      panel.classList.remove("is-active");
+    });
+
+    tab.classList.add("is-active");
+    tab.setAttribute("aria-selected", "true");
+
+    const targetPanel = document.getElementById(targetId);
+
+    if (targetPanel) {
+      targetPanel.classList.add("is-active");
+    }
+  });
+});
   </script>
 
 </body>
