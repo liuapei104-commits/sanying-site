@@ -2720,3 +2720,94 @@ main {
     font-size: 14px;
   }
 }
+/* ========================================
+   舞台流程：雙人照片與完整人物顯示
+======================================== */
+
+/* 單張照片稍微加高 */
+.program-photo {
+  width: 190px;
+  height: 128px;
+}
+
+/* 一般人物照片仍可滿版，但焦點往上 */
+.program-photo > img {
+  object-fit: cover;
+  object-position: var(--focus-x, 50%) var(--focus-y, 25%);
+}
+
+/* 雙照片容器 */
+.program-photo-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+  padding: 5px;
+  background: #e7f8fe;
+}
+
+/* 每一位演出者的照片格 */
+.program-photo-person {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+/* 尚未上傳照片時的提示文字 */
+.program-photo-person > span {
+  position: relative;
+  z-index: 1;
+  padding: 8px;
+  color: rgba(8, 125, 167, 0.55);
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1.35;
+  text-align: center;
+}
+
+/* 雙人照片完整顯示，不切頭 */
+.program-photo-person > img {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  padding: 3px;
+  object-fit: contain;
+  object-position: center center;
+  background: #ffffff;
+}
+
+/* 平板 */
+@media (max-width: 900px) {
+  .program-photo {
+    width: 155px;
+    height: 110px;
+  }
+}
+
+/* 手機 */
+@media (max-width: 650px) {
+  .program-photo {
+    width: 104px;
+    height: 82px;
+  }
+
+  .program-photo-pair {
+    gap: 3px;
+    padding: 3px;
+  }
+
+  .program-photo-person {
+    border-radius: 9px;
+  }
+
+  .program-photo-person > span {
+    font-size: 7px;
+    padding: 3px;
+  }
+}
