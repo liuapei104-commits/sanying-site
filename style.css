@@ -2894,3 +2894,294 @@ transition:.25s;
 transform:scale(1.04);
 
 }
+
+
+/* =========================================================
+   主活動周邊活動｜四張等比版（最終覆寫）
+   對應 main-event.html 的 event-feature-* 類別
+========================================================= */
+
+.event-feature-section {
+  background:
+    radial-gradient(circle at 8% 10%, rgba(97, 201, 230, 0.12), transparent 24%),
+    radial-gradient(circle at 92% 90%, rgba(81, 207, 137, 0.11), transparent 24%),
+    #f7fcff !important;
+}
+
+.event-feature-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+  align-items: stretch !important;
+}
+
+.event-feature-card,
+.event-feature-card.feature-wide {
+  min-width: 0 !important;
+  min-height: 430px !important;
+  padding: 38px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  grid-column: auto !important;
+  color: #155f7d !important;
+  border: 1px solid rgba(8, 125, 167, 0.13) !important;
+  border-radius: 28px !important;
+  background: #ffffff !important;
+  box-shadow: 0 16px 40px rgba(11, 101, 138, 0.08) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.event-feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 23px 50px rgba(11, 101, 138, 0.14) !important;
+}
+
+.event-feature-card::after,
+.event-feature-card.feature-wide::after {
+  right: -65px !important;
+  bottom: -75px !important;
+  width: 190px !important;
+  height: 190px !important;
+  border: 26px solid rgba(8, 125, 167, 0.045) !important;
+}
+
+.feature-number,
+.feature-wide .feature-number {
+  top: 20px !important;
+  right: 27px !important;
+  color: rgba(8, 125, 167, 0.09) !important;
+  font-size: 58px !important;
+}
+
+.feature-kicker,
+.feature-wide .feature-kicker {
+  width: fit-content;
+  margin-bottom: 0 !important;
+  padding: 4px 11px !important;
+  color: #ef4e70 !important;
+  background: rgba(255, 102, 133, 0.11) !important;
+  font-size: 9px !important;
+  letter-spacing: 0.1em !important;
+}
+
+.event-feature-card h3,
+.event-feature-card.feature-wide h3 {
+  margin: 16px 0 13px !important;
+  padding-right: 55px;
+  color: #114c65 !important;
+  font-size: clamp(25px, 2.6vw, 34px) !important;
+  line-height: 1.35 !important;
+}
+
+.event-feature-card > p,
+.event-feature-card.feature-wide > p {
+  max-width: none !important;
+  margin: 0 !important;
+  color: #608293 !important;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.feature-meta {
+  margin-top: 22px !important;
+  gap: 0 !important;
+}
+
+.feature-meta div {
+  padding: 11px 0;
+  grid-template-columns: 88px minmax(0, 1fr) !important;
+  gap: 14px !important;
+  border-bottom: 1px solid rgba(8, 125, 167, 0.1);
+}
+
+.feature-meta span,
+.feature-wide .feature-meta span {
+  color: #ff6685 !important;
+  font-size: 12px !important;
+}
+
+.feature-meta strong,
+.feature-wide .feature-meta strong {
+  color: #155f7d !important;
+  font-size: 13px !important;
+  line-height: 1.65 !important;
+}
+
+.feature-note,
+.feature-wide .feature-note {
+  margin-top: auto !important;
+  padding: 11px 15px !important;
+  color: #087da7 !important;
+  background: #eaf8fd !important;
+  font-size: 12px !important;
+  border-radius: 13px !important;
+}
+
+.market-type-grid {
+  margin-top: auto !important;
+  padding-top: 22px;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+}
+
+.market-type {
+  padding: 15px !important;
+  border-radius: 15px !important;
+  background: #f1f9fc !important;
+}
+
+.market-type strong {
+  font-size: 14px !important;
+}
+
+.market-type span {
+  font-size: 11px !important;
+}
+
+/* =========================================================
+   摸彩參加方式｜與摸彩獎品同區
+========================================================= */
+
+.raffle-method-panel {
+  margin-bottom: 34px;
+  padding: 30px 34px;
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 25px;
+  border-radius: 28px;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 92% 15%, rgba(255, 232, 117, 0.28), transparent 23%),
+    linear-gradient(135deg, #087da7, #50ca86);
+  box-shadow: 0 20px 48px rgba(8, 125, 167, 0.18);
+}
+
+.raffle-method-icon {
+  width: 68px;
+  height: 68px;
+  display: grid;
+  place-items: center;
+  border-radius: 22px;
+  color: #087da7;
+  background: #ffe875;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.raffle-method-label {
+  color: #ffe875;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.17em;
+}
+
+.raffle-method-copy h3 {
+  margin: 5px 0 6px;
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.raffle-method-copy p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.83);
+}
+
+.raffle-method-copy strong {
+  color: #ffe875;
+}
+
+.raffle-method-time {
+  min-width: 185px;
+  padding-left: 25px;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.raffle-method-time span {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.raffle-method-time strong {
+  margin-top: 3px;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+/* 修正 Lightbox：相容 main-event.html 的 is-open 類別 */
+.lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
+@media (max-width: 850px) {
+  .event-feature-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .event-feature-card,
+  .event-feature-card.feature-wide {
+    min-height: auto !important;
+  }
+
+  .feature-note,
+  .market-type-grid {
+    margin-top: 24px !important;
+  }
+
+  .raffle-method-panel {
+    grid-template-columns: 64px 1fr;
+  }
+
+  .raffle-method-time {
+    grid-column: 1 / -1;
+    padding: 18px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .event-feature-card,
+  .event-feature-card.feature-wide {
+    padding: 30px 24px !important;
+    border-radius: 23px !important;
+  }
+
+  .event-feature-card h3,
+  .event-feature-card.feature-wide h3 {
+    padding-right: 40px;
+    font-size: 25px !important;
+  }
+
+  .feature-meta div {
+    grid-template-columns: 1fr !important;
+    gap: 2px !important;
+  }
+
+  .market-type-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .raffle-method-panel {
+    padding: 25px;
+    grid-template-columns: 1fr;
+  }
+
+  .raffle-method-icon {
+    width: 58px;
+    height: 58px;
+  }
+
+  .raffle-method-time {
+    grid-column: auto;
+  }
+}
