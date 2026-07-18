@@ -2107,8 +2107,9 @@ main {
     padding: 38px 25px;
   }
 }
+
 /* ========================================
-   摸彩品照片卡片
+   摸彩品照片卡片｜統一尺寸版
 ======================================== */
 
 .prize-day-section {
@@ -2147,14 +2148,23 @@ main {
   font-size: 14px;
 }
 
+/* 桌機每排 3 張，全部相同大小 */
 .prize-card-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
+  align-items: stretch;
 }
 
-.prize-card {
+/* 即使 HTML 還保留 prize-card-featured，也不再放大 */
+.prize-card,
+.prize-card-featured {
+  min-width: 0;
+  height: 100%;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  grid-column: auto;
   border: 1px solid rgba(8, 125, 167, 0.12);
   border-radius: 25px;
   background: #ffffff;
@@ -2167,45 +2177,49 @@ main {
   box-shadow: 0 22px 48px rgba(11, 101, 138, 0.15);
 }
 
-.prize-card-featured {
-  grid-column: span 2;
-}
-
-.prize-image {
+/* 所有圖片版位固定同尺寸 */
+.prize-image,
+.prize-card-featured .prize-image {
   position: relative;
+  width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(8, 125, 167, 0.1);
   background:
-    linear-gradient(135deg, rgba(97, 201, 230, 0.15), rgba(81, 207, 137, 0.15)),
-    #effaff;
+    linear-gradient(135deg, rgba(97, 201, 230, 0.12), rgba(81, 207, 137, 0.12)),
+    #f7fbfd;
 }
 
-.prize-card-featured .prize-image {
-  aspect-ratio: 16 / 8.2;
-}
-
+/* 商品自動置中、完整顯示、不裁切、不變形 */
 .prize-image img {
   position: relative;
   z-index: 2;
   display: block;
   width: 100%;
   height: 100%;
+  padding: 26px;
   object-fit: contain;
+  object-position: center center;
   background: #ffffff;
 }
 
-/* 圖片還沒上傳或路徑錯誤時顯示 */
+/* 沒有 src 或 src 空白時隱藏圖片 */
 .prize-image img:not([src]),
 .prize-image img[src=""] {
   display: none;
 }
 
+/* 預留版位 */
 .image-placeholder {
   position: absolute;
   inset: 0;
   z-index: 1;
   display: grid;
   place-items: center;
+  padding-top: 58px;
   color: rgba(8, 125, 167, 0.55);
   font-size: 14px;
   font-weight: 900;
@@ -2216,26 +2230,36 @@ main {
 
 .image-placeholder::before {
   position: absolute;
+  top: 50%;
+  left: 50%;
   width: 72px;
   height: 56px;
-  margin-top: -65px;
   border: 3px solid rgba(8, 125, 167, 0.22);
   border-radius: 11px;
   content: "";
+  transform: translate(-50%, -78%);
 }
 
 .image-placeholder::after {
   position: absolute;
+  top: 50%;
+  left: 50%;
   width: 18px;
   height: 18px;
-  margin: -83px 0 0 -30px;
   border-radius: 50%;
   background: rgba(255, 102, 133, 0.38);
   content: "";
+  transform: translate(-28px, -45px);
 }
 
+/* 文字區高度一致 */
 .prize-card-content {
+  min-height: 180px;
   padding: 24px 25px 27px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .prize-rank {
@@ -2248,37 +2272,34 @@ main {
   font-weight: 900;
 }
 
-.prize-card-content h4 {
-  margin: 14px 0 7px;
+.prize-card-content h4,
+.prize-card-featured .prize-card-content h4 {
+  margin: 14px 0 8px;
   color: #114c65;
   font-size: 20px;
   font-weight: 900;
   line-height: 1.45;
 }
 
-.prize-card-featured .prize-card-content h4 {
-  font-size: 27px;
-}
-
 .prize-card-content p {
-  margin: 0;
+  margin: auto 0 0;
   color: #608293;
   font-size: 14px;
   font-weight: 700;
 }
 
-/* 平板 */
+/* 平板：每排 2 張 */
 @media (max-width: 950px) {
   .prize-card-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .prize-card-featured {
-    grid-column: span 2;
+    grid-column: auto;
   }
 }
 
-/* 手機 */
+/* 手機：每排 1 張 */
 @media (max-width: 650px) {
   .prize-day-section {
     margin-top: 65px;
@@ -2294,16 +2315,22 @@ main {
     grid-template-columns: 1fr;
   }
 
-  .prize-card-featured {
-    grid-column: auto;
-  }
-
-  .prize-card-featured .prize-image,
-  .prize-image {
+  .prize-image,
+  .prize-card-featured .prize-image {
     aspect-ratio: 4 / 3;
   }
 
+  .prize-image img {
+    padding: 22px;
+  }
+
+  .prize-card-content {
+    min-height: 165px;
+  }
+
+  .prize-card-content h4,
   .prize-card-featured .prize-card-content h4 {
-    font-size: 22px;
+    font-size: 20px;
   }
 }
+
