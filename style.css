@@ -4252,8 +4252,8 @@ body.photo-rules-open {
 .site-header .logo .site-logo-image {
   display: block;
   width: auto;
-  height: 44px;
-  max-width: 210px;
+  height: 90px;
+  max-width: none;
   object-fit: contain;
   transition: transform 0.22s ease;
 }
@@ -4264,14 +4264,12 @@ body.photo-rules-open {
 
 @media (max-width: 850px) {
   .site-header .logo .site-logo-image {
-    height: 36px;
-    max-width: 168px;
+    height: 72px;
   }
 }
 
 @media (max-width: 430px) {
   .site-header .logo .site-logo-image {
-    height: 32px;
-    max-width: 145px;
+    height: 55px;
   }
 }
