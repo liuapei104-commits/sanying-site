@@ -3932,3 +3932,304 @@ body.shop-modal-open {
 .shop-section-detailed .shop-card-detailed:hover .shop-photo img.fresh-farm-logo {
   transform: none !important;
 }
+
+/* =========================================================
+   攝影競賽簡章彈出視窗
+========================================================= */
+
+.photo-rules-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s ease, visibility 0.22s ease;
+}
+
+.photo-rules-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.photo-rules-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 35, 49, 0.82);
+  backdrop-filter: blur(8px);
+}
+
+.photo-rules-dialog {
+  position: relative;
+  z-index: 2;
+  width: min(900px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 32px;
+  background: #ffffff;
+  box-shadow: 0 32px 100px rgba(0, 30, 43, 0.42);
+  transform: translateY(14px) scale(0.985);
+  transition: transform 0.22s ease;
+}
+
+.photo-rules-modal.is-open .photo-rules-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.photo-rules-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 4;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #087da7;
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(0, 55, 75, 0.12);
+}
+
+.photo-rules-header {
+  padding: 34px 72px 30px 34px;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 90% 12%, rgba(255, 232, 117, 0.32), transparent 25%),
+    linear-gradient(135deg, #087da7, #51cf89);
+}
+
+.photo-rules-header > span {
+  color: #ffe875;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+}
+
+.photo-rules-header h2 {
+  margin: 7px 0 3px;
+  color: #ffffff;
+  font-size: clamp(27px, 4vw, 40px);
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.photo-rules-header p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 14px;
+}
+
+.photo-rules-content {
+  padding: 30px 34px;
+  overflow-y: auto;
+}
+
+.rules-section + .rules-section {
+  margin-top: 28px;
+}
+
+.rules-section h3 {
+  margin: 0 0 10px;
+  color: #114c65;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.rules-section p,
+.rules-section li {
+  color: #608293;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.rules-section p {
+  margin: 0;
+}
+
+.rules-section ul,
+.rules-section ol {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.rules-section li + li {
+  margin-top: 5px;
+}
+
+.rules-overview {
+  padding: 20px 22px;
+  border-radius: 18px;
+  background: #effaff;
+}
+
+.rules-summary-grid {
+  margin: 22px 0 28px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.rules-summary-grid article {
+  padding: 16px;
+  border: 1px solid rgba(8, 125, 167, 0.12);
+  border-radius: 15px;
+  background: #ffffff;
+}
+
+.rules-summary-grid span {
+  display: block;
+  margin-bottom: 5px;
+  color: #ff6685;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.rules-summary-grid strong {
+  color: #114c65;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.5;
+}
+
+.rules-prize-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.rules-prize-grid article {
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: rgba(255, 102, 133, 0.08);
+}
+
+.rules-prize-grid span,
+.rules-prize-grid small {
+  display: block;
+}
+
+.rules-prize-grid span {
+  color: #ef4e70;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.rules-prize-grid strong {
+  display: block;
+  margin: 3px 0;
+  color: #114c65;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.rules-prize-grid small {
+  color: #608293;
+  font-size: 11px;
+}
+
+.rules-score-list {
+  overflow: hidden;
+  border: 1px solid rgba(8, 125, 167, 0.12);
+  border-radius: 16px;
+}
+
+.rules-score-list div {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid rgba(8, 125, 167, 0.1);
+}
+
+.rules-score-list div:last-child {
+  border-bottom: 0;
+}
+
+.rules-score-list span {
+  color: #155f7d;
+  font-size: 13px;
+}
+
+.rules-score-list strong {
+  flex-shrink: 0;
+  color: #ef4e70;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.rules-notice {
+  padding: 20px 22px;
+  border-radius: 18px;
+  background: rgba(255, 232, 117, 0.23);
+}
+
+.photo-rules-actions {
+  padding: 18px 34px 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid rgba(8, 125, 167, 0.1);
+  background: #ffffff;
+}
+
+.button-outline {
+  color: #087da7;
+  border: 1px solid rgba(8, 125, 167, 0.28);
+  background: #ffffff;
+}
+
+body.photo-rules-open {
+  overflow: hidden;
+}
+
+@media (max-width: 760px) {
+  .photo-rules-modal {
+    padding: 12px;
+  }
+
+  .photo-rules-dialog {
+    max-height: calc(100vh - 24px);
+    border-radius: 24px;
+  }
+
+  .photo-rules-header {
+    padding: 28px 58px 24px 23px;
+  }
+
+  .photo-rules-content {
+    padding: 24px 22px;
+  }
+
+  .rules-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .photo-rules-actions {
+    padding: 16px 22px 20px;
+    flex-direction: column;
+  }
+
+  .photo-rules-actions .button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .rules-summary-grid,
+  .rules-prize-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-rules-header h2 {
+    font-size: 26px;
+  }
+}
