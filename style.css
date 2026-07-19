@@ -4233,3 +4233,45 @@ body.photo-rules-open {
     font-size: 26px;
   }
 }
+
+/* =========================================================
+   導覽列標準字 Logo｜最終設定
+========================================================= */
+
+.site-header .logo {
+  flex-shrink: 0;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  color: transparent;
+  font-size: 0;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.site-header .logo .site-logo-image {
+  display: block;
+  width: auto;
+  height: 44px;
+  max-width: 210px;
+  object-fit: contain;
+  transition: transform 0.22s ease;
+}
+
+.site-header .logo:hover .site-logo-image {
+  transform: scale(1.025);
+}
+
+@media (max-width: 850px) {
+  .site-header .logo .site-logo-image {
+    height: 36px;
+    max-width: 168px;
+  }
+}
+
+@media (max-width: 430px) {
+  .site-header .logo .site-logo-image {
+    height: 32px;
+    max-width: 145px;
+  }
+}
