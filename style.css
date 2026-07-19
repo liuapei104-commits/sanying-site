@@ -3506,3 +3506,10 @@ body.lightbox-open {
     padding: 22px 21px 24px !important;
   }
 }
+/* 禾乃川、鮮農直賣所：完整顯示識別圖，不裁切 */
+.shop-section-detailed .shop-photo img.shop-photo-contain {
+  padding: 18px;
+  object-fit: contain !important;
+  object-position: center center !important;
+  background: #ffffff !important;
+}
