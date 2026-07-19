@@ -3506,70 +3506,144 @@ body.lightbox-open {
     padding: 22px 21px 24px !important;
   }
 }
-/* 禾乃川、鮮農直賣所：完整顯示識別圖，不裁切 */
-.shop-section-detailed .shop-photo img.shop-photo-contain {
-  padding: 18px;
-  object-fit: contain !important;
-  object-position: center center !important;
-  background: #ffffff !important;
-}
+
 /* =========================================================
-   合作店家資訊對齊
+   合作店家｜雙優惠券資訊
 ========================================================= */
 
+.shop-coupon-notice {
+  margin: -18px 0 30px;
+  padding: 22px 24px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  border: 1px solid rgba(8, 125, 167, 0.12);
+  border-radius: 20px;
+  background: #ffffff;
+}
+
+.shop-coupon-notice > div {
+  padding-left: 16px;
+  border-left: 4px solid #51cf89;
+}
+
+.shop-coupon-notice > div:nth-child(2) {
+  border-left-color: #61c9e6;
+}
+
+.shop-coupon-notice span {
+  color: #114c65;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.shop-coupon-notice p {
+  margin: 3px 0 0;
+  color: #608293;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
 .shop-section-detailed .shop-card-body {
-  display: grid !important;
-  grid-template-rows:
-    auto
-    minmax(128px, auto)
-    auto
-    auto
-    auto !important;
-  align-content: start !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
-/* 店名 */
-.shop-section-detailed .shop-card-detailed h3 {
-  margin-bottom: 10px !important;
-}
-
-/* 店家介紹固定最小高度，讓後面資訊對齊 */
 .shop-section-detailed .shop-description {
-  min-height: 128px !important;
-  margin-bottom: 16px !important;
+  min-height: 112px !important;
 }
 
-/* 營業時間固定高度 */
 .shop-section-detailed .shop-hours {
-  min-height: 92px !important;
-  margin-bottom: 10px !important;
+  min-height: 82px !important;
 }
 
-/* 活動優惠固定高度 */
-.shop-section-detailed .shop-offer {
-  min-height: 74px !important;
-  margin-bottom: 18px !important;
+.shop-coupon {
+  position: relative;
+  margin-bottom: 10px;
+  padding: 14px 15px;
+  border-radius: 14px;
 }
 
-/* 地圖連結固定靠底 */
+.shop-coupon-game {
+  background: rgba(81, 207, 137, 0.11);
+  border: 1px solid rgba(81, 207, 137, 0.23);
+}
+
+.shop-coupon-traffic {
+  background: rgba(97, 201, 230, 0.12);
+  border: 1px solid rgba(97, 201, 230, 0.25);
+}
+
+.shop-coupon > span {
+  display: block;
+  margin-bottom: 5px;
+  color: #087da7;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+}
+
+.shop-coupon-game > span {
+  color: #248b5b;
+}
+
+.shop-coupon p,
+.shop-coupon li,
+.shop-coupon small {
+  color: #155f7d;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.shop-coupon p {
+  margin: 0;
+}
+
+.shop-coupon .coupon-subtitle {
+  margin-top: 8px;
+  font-weight: 900;
+}
+
+.shop-coupon ol,
+.shop-coupon ul {
+  margin: 5px 0 0;
+  padding-left: 19px;
+}
+
+.shop-coupon li + li {
+  margin-top: 3px;
+}
+
+.shop-coupon strong {
+  display: inline-flex;
+  margin-top: 7px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: #ef4e70;
+  background: rgba(255, 102, 133, 0.1);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.shop-coupon small {
+  display: block;
+  margin-top: 5px;
+}
+
 .shop-section-detailed .shop-map-link {
-  align-self: start !important;
-  margin-top: 0 !important;
+  margin-top: auto !important;
+  padding-top: 9px;
 }
 
-/* 平板與手機不強制固定高度，避免內容太擠 */
 @media (max-width: 1050px) {
-  .shop-section-detailed .shop-card-body {
-    display: flex !important;
-  }
-
   .shop-section-detailed .shop-description,
-  .shop-section-detailed .shop-hours,
-  .shop-section-detailed .shop-offer {
+  .shop-section-detailed .shop-hours {
     min-height: 0 !important;
   }
+}
 
-  .shop-section-detailed .shop-map-link {
-    margin-top: auto !important;
+@media (max-width: 680px) {
+  .shop-coupon-notice {
+    grid-template-columns: 1fr;
   }
 }
