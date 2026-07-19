@@ -3513,3 +3513,63 @@ body.lightbox-open {
   object-position: center center !important;
   background: #ffffff !important;
 }
+/* =========================================================
+   合作店家資訊對齊
+========================================================= */
+
+.shop-section-detailed .shop-card-body {
+  display: grid !important;
+  grid-template-rows:
+    auto
+    minmax(128px, auto)
+    auto
+    auto
+    auto !important;
+  align-content: start !important;
+}
+
+/* 店名 */
+.shop-section-detailed .shop-card-detailed h3 {
+  margin-bottom: 10px !important;
+}
+
+/* 店家介紹固定最小高度，讓後面資訊對齊 */
+.shop-section-detailed .shop-description {
+  min-height: 128px !important;
+  margin-bottom: 16px !important;
+}
+
+/* 營業時間固定高度 */
+.shop-section-detailed .shop-hours {
+  min-height: 92px !important;
+  margin-bottom: 10px !important;
+}
+
+/* 活動優惠固定高度 */
+.shop-section-detailed .shop-offer {
+  min-height: 74px !important;
+  margin-bottom: 18px !important;
+}
+
+/* 地圖連結固定靠底 */
+.shop-section-detailed .shop-map-link {
+  align-self: start !important;
+  margin-top: 0 !important;
+}
+
+/* 平板與手機不強制固定高度，避免內容太擠 */
+@media (max-width: 1050px) {
+  .shop-section-detailed .shop-card-body {
+    display: flex !important;
+  }
+
+  .shop-section-detailed .shop-description,
+  .shop-section-detailed .shop-hours,
+  .shop-section-detailed .shop-offer {
+    min-height: 0 !important;
+  }
+
+  .shop-section-detailed .shop-map-link {
+    margin-top: auto !important;
+  }
+}
