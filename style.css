@@ -3912,3 +3912,16 @@ body.shop-modal-open {
     padding: 17px;
   }
 }
+
+
+/* ========= 鮮農直賣所照片修正 ========= */
+.shop-card-fresh .shop-photo img,
+.shop-card[data-shop="鮮農直賣所"] .shop-photo img,
+img[src*="fresh"],
+img[src*="xiannong"],
+img[src*="鮮農"]{
+    object-fit: contain !important;
+    object-position: center center !important;
+    background:#ffffff;
+    padding:18px;
+}
