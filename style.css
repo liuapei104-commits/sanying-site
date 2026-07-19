@@ -3913,15 +3913,22 @@ body.shop-modal-open {
   }
 }
 
+/* =========================================================
+   鮮農直賣所圖片｜完整顯示、不裁切
+========================================================= */
 
-/* ========= 鮮農直賣所照片修正 ========= */
-.shop-card-fresh .shop-photo img,
-.shop-card[data-shop="鮮農直賣所"] .shop-photo img,
-img[src*="fresh"],
-img[src*="xiannong"],
-img[src*="鮮農"]{
-    object-fit: contain !important;
-    object-position: center center !important;
-    background:#ffffff;
-    padding:18px;
+.shop-section-detailed .shop-photo img.fresh-farm-logo {
+  position: absolute !important;
+  inset: 18px !important;
+  width: calc(100% - 36px) !important;
+  height: calc(100% - 36px) !important;
+  padding: 0 !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  background: #ffffff !important;
+  transform: none !important;
+}
+
+.shop-section-detailed .shop-card-detailed:hover .shop-photo img.fresh-farm-logo {
+  transform: none !important;
 }
