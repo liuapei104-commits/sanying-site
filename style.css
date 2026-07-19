@@ -3647,3 +3647,268 @@ body.lightbox-open {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================================
+   合作店家｜精簡卡片＋優惠彈出視窗
+========================================================= */
+
+.shop-section-detailed .shop-card-detailed {
+  min-height: 0 !important;
+}
+
+.shop-section-detailed .shop-card-body {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.shop-section-detailed .shop-description {
+  min-height: 112px !important;
+  margin-bottom: 14px !important;
+}
+
+.shop-section-detailed .shop-hours {
+  min-height: 82px !important;
+  margin-bottom: 18px !important;
+}
+
+.shop-actions {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.shop-offer-button,
+.shop-actions .shop-map-link {
+  min-height: 44px;
+  padding: 10px 13px !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  line-height: 1.3;
+  text-align: center;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.shop-offer-button {
+  color: #ffffff;
+  background: linear-gradient(135deg, #087da7, #51cf89);
+  box-shadow: 0 9px 20px rgba(8, 125, 167, 0.18);
+}
+
+.shop-actions .shop-map-link {
+  margin: 0 !important;
+  color: #ef4e70 !important;
+  border: 1px solid rgba(255, 102, 133, 0.28);
+  background: rgba(255, 102, 133, 0.07);
+}
+
+.shop-actions .shop-map-link:hover {
+  transform: none !important;
+  border-color: #ff6685;
+}
+
+/* 隱藏舊優惠區，以防快取或舊 HTML 殘留 */
+.shop-section-detailed .shop-coupon,
+.shop-section-detailed .shop-coupon-notice {
+  display: none !important;
+}
+
+/* 彈出視窗 */
+.shop-offer-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s ease, visibility 0.22s ease;
+}
+
+.shop-offer-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.shop-offer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 36, 50, 0.78);
+  backdrop-filter: blur(8px);
+}
+
+.shop-offer-dialog {
+  position: relative;
+  z-index: 2;
+  width: min(720px, 100%);
+  max-height: calc(100vh - 48px);
+  padding: 38px;
+  overflow-y: auto;
+  border-radius: 30px;
+  background: #ffffff;
+  box-shadow: 0 30px 90px rgba(0, 34, 48, 0.35);
+  transform: translateY(14px) scale(0.98);
+  transition: transform 0.22s ease;
+}
+
+.shop-offer-modal.is-open .shop-offer-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.shop-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #087da7;
+  background: #effaff;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.shop-modal-kicker {
+  color: #ff6685;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.shop-offer-dialog h2 {
+  margin: 6px 50px 8px 0;
+  color: #114c65;
+  font-size: clamp(27px, 4vw, 38px);
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.shop-modal-intro {
+  margin: 0 0 22px;
+  color: #608293;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.shop-modal-sections {
+  display: grid;
+  gap: 14px;
+}
+
+.shop-modal-section {
+  padding: 20px 22px;
+  border-radius: 19px;
+}
+
+.shop-modal-game {
+  border: 1px solid rgba(81, 207, 137, 0.28);
+  background: rgba(81, 207, 137, 0.1);
+}
+
+.shop-modal-traffic {
+  border: 1px solid rgba(97, 201, 230, 0.32);
+  background: rgba(97, 201, 230, 0.11);
+}
+
+.shop-modal-section > span {
+  display: block;
+  margin-bottom: 8px;
+  color: #114c65;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.shop-modal-game > span {
+  color: #248b5b;
+}
+
+.shop-modal-traffic > span {
+  color: #087da7;
+}
+
+.shop-modal-section p,
+.shop-modal-section li,
+.shop-modal-section small {
+  color: #155f7d;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.shop-modal-section p {
+  margin: 0;
+}
+
+.shop-modal-section h4 {
+  margin: 12px 0 5px;
+  color: #114c65;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.shop-modal-section ol,
+.shop-modal-section ul {
+  margin: 6px 0 0;
+  padding-left: 21px;
+}
+
+.shop-modal-section li + li {
+  margin-top: 4px;
+}
+
+.shop-modal-section strong {
+  color: #ef4e70;
+}
+
+.modal-limit {
+  margin-top: 10px;
+  padding: 4px 11px;
+  display: inline-flex;
+  border-radius: 999px;
+  color: #ef4e70;
+  background: rgba(255, 102, 133, 0.12);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+body.shop-modal-open {
+  overflow: hidden;
+}
+
+@media (max-width: 680px) {
+  .shop-section-detailed .shop-description,
+  .shop-section-detailed .shop-hours {
+    min-height: 0 !important;
+  }
+
+  .shop-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-offer-dialog {
+    padding: 30px 21px 24px;
+    border-radius: 24px;
+  }
+
+  .shop-modal-close {
+    top: 12px;
+    right: 12px;
+  }
+
+  .shop-offer-dialog h2 {
+    margin-right: 40px;
+  }
+
+  .shop-modal-section {
+    padding: 17px;
+  }
+}
