@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
-<link href="style.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet"/>
 <style>
     /* 表演照片放大檢視 */
     .program-photo img,
@@ -563,8 +563,33 @@
         grid-column: auto;
       }
     }
-  </style>
-</link></head>
+  
+
+    /* 8月2日上午演出地點膠囊 */
+    .program-location {
+      width: fit-content;
+      margin-top: 12px;
+      padding: 6px 13px;
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(8, 125, 167, 0.18);
+      border-radius: 999px;
+      color: #087da7;
+      background: #eaf8fd;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 650px) {
+      .program-location {
+        margin-top: 10px;
+        padding: 5px 11px;
+        font-size: 11px;
+      }
+    }
+</style>
+</head>
 <body>
 <!-- 導覽列 -->
 <header class="site-header">
@@ -582,7 +607,6 @@
 <a href="index.html#shops">合作店家優惠</a>
 <a href="index.html#photo">攝影比賽專區</a>
 <a href="index.html#video">影音專區</a>
-
 </nav>
 </div>
 </header>
@@ -674,8 +698,8 @@
 <div class="container">
 <div class="section-heading centered">
 <span class="section-en">STAGE PROGRAM</span>
-<h2>主場舞台流程</h2>
-<p>依演出時間順序排列，點選日期查看當日完整節目。</p>
+<h2>夏日悠遊派對<br/>舞台流程</h2>
+<p>依演出時間排序，點選日期查看當日完整舞台節目。</p>
 </div>
 <!-- 日期切換 -->
 <div class="program-tabs" role="tablist">
@@ -829,7 +853,7 @@
 <span class="program-category">泡泡表演</span>
 <h4>猴子老師泡泡表演</h4>
 <p>以大大小小的夢幻泡泡打造親子互動舞台。</p>
-</div>
+<div class="program-location">演出地點｜禾埕廣場</div></div>
 </article>
 <article class="program-row">
 <time>11:10<br/>－<br/>11:40</time>
@@ -841,7 +865,7 @@
 <span class="program-category">氣球表演</span>
 <h4>呱呱姐姐歡樂小丑氣球秀</h4>
 <p>趣味小丑互動搭配造型氣球演出。</p>
-</div>
+<div class="program-location">演出地點｜禾埕廣場</div></div>
 </article>
 <article class="program-row">
 <time>11:40<br/>－<br/>13:10</time>
@@ -853,7 +877,7 @@
 <span class="program-category">傳統戲曲</span>
 <h4>五洲園掌中劇團</h4>
 <p>以布袋戲演出呈現傳統藝術魅力。</p>
-</div>
+<div class="program-location">演出地點｜禾埕廣場</div></div>
 </article>
 <article class="program-row">
 <time>13:10<br/>－<br/>13:40</time>
@@ -865,7 +889,7 @@
 <span class="program-category">舞台演出</span>
 <h4>鈴極限</h4>
 <p>帶來節奏感十足的特色舞台演出。</p>
-</div>
+<div class="program-location">演出地點｜禾埕廣場</div></div>
 </article>
 <article class="program-row">
 <time>13:40<br/>－<br/>14:05</time>
@@ -882,13 +906,13 @@
 <article class="program-row">
 <time>14:05<br/>－<br/>14:45</time>
 <div class="program-photo">
-<span>粹垢 TRAEGO 照片</span>
-<img alt="粹垢 TRAEGO" loading="lazy" onerror="this.style.display='none';" src="images/performers/0802-traego.jpg" style="--focus-x: 50%; --focus-y: 40%;"/>
+<span>庸俗救星照片</span>
+<img alt="庸俗救星" loading="lazy" onerror="this.style.display='none';" src="images/performers/0802-yongsu.jpg" style="--focus-x: 50%; --focus-y: 20%;"/>
 </div>
 <div class="program-info">
 <span class="program-category">音樂演出</span>
-<h4>粹垢 TRAEGO</h4>
-<p>帶來風格鮮明的現場演出。</p>
+<h4>庸俗救星</h4>
+<p>以樂團現場演出延續午後舞台熱度。</p>
 </div>
 </article>
 <article class="program-row">
@@ -918,13 +942,13 @@
 <article class="program-row">
 <time>15:55<br/>－<br/>16:35</time>
 <div class="program-photo">
-<span>庸俗救星照片</span>
-<img alt="庸俗救星" loading="lazy" onerror="this.style.display='none';" src="images/performers/0802-yongsu.jpg" style="--focus-x: 50%; --focus-y: 20%;"/>
+<span>粹垢 TRAEGO照片</span>
+<img alt="粹垢 TRAEGO" loading="lazy" onerror="this.style.display='none';" src="images/performers/0802-traego.jpg" style="--focus-x: 50%; --focus-y: 40%;"/>
 </div>
 <div class="program-info">
 <span class="program-category">樂團演出</span>
-<h4>庸俗救星</h4>
-<p>以樂團現場演出推升舞台熱度。</p>
+<h4>粹垢 TRAEGO</h4>
+<p>帶來風格鮮明、充滿現場張力的樂團演出。</p>
 </div>
 </article>
 <article class="program-row program-row-highlight">
