@@ -10,6 +10,33 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
 <link href="style.css" rel="stylesheet"/>
+
+<style>
+  /* 系列活動刪除「名人一日導遊」後的雙卡版型 */
+  .events-section .event-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+
+  .events-section .event-main,
+  .events-section .event-game {
+    grid-column: auto;
+    grid-row: auto;
+    min-height: 420px;
+  }
+
+  @media (max-width: 768px) {
+    .events-section .event-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .events-section .event-main,
+    .events-section .event-game {
+      min-height: 340px;
+    }
+  }
+</style>
+
 </head>
 <body>
 <!-- 網站導覽列 -->
@@ -188,9 +215,9 @@
 <a href="main-event.html">查看活動資訊 →</a>
 </div>
 </article>
-<article class="event-card event-bus"><div class="event-number">02</div><div class="event-content"><span class="event-type">SPECIAL TOUR</span><h3>名人一日導遊</h3><p>跟著神秘嘉賓搭乘 731 公車，一起漫遊三峽、鶯歌，走訪特色景點、品嚐在地美食，發掘三鶯最值得收藏的旅行風景。</p><span class="event-coming">Coming Soon．詳細資訊即將公布</span></div></article>
+
 <article class="event-card event-game">
-<div class="event-number">03</div>
+<div class="event-number">02</div>
 <div class="event-content">
 <span class="event-type">CITY GAME</span>
 <h3>喵喵＆藍狗城市解謎</h3>
