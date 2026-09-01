@@ -581,9 +581,13 @@
       }
 
       try {
-        const url = new URL(SESSION_STATUS_URL);
-        url.searchParams.set("session", currentSession);
-        const response = await fetch(url.toString(), {cache:"no-store"});
+        const response = await fetch(SESSION_STATUS_URL, {
+          method: "GET",
+          cache: "no-store",
+          headers: {
+            "Authorization": `Bearer ${currentSession}`
+          }
+        });
         const data = await response.json();
 
         if (!response.ok || data.ok === false || data.loggedIn === false || data.authenticated === false) {
