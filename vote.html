@@ -144,8 +144,8 @@
     .work-collage{
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:2px;
-      background:#e6f2f5;
+      gap:3px;
+      background:#dcecef;
       cursor:pointer;
     }
 
@@ -156,15 +156,36 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      background:#f7fbfc;
+      background:#eaf4f6;
+    }
+
+    .work-thumb-bg{
+      position:absolute;
+      inset:-18px;
+      background-image:var(--thumb-bg);
+      background-position:center;
+      background-size:cover;
+      filter:blur(16px);
+      opacity:.48;
+      transform:scale(1.12);
+    }
+
+    .work-thumb::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(255,255,255,.08);
+      pointer-events:none;
     }
 
     .work-thumb img{
+      position:relative;
+      z-index:1;
       width:100%;
       height:100%;
       object-fit:contain;
       display:block;
-      background:#f7fbfc;
+      filter:drop-shadow(0 2px 7px rgba(0,0,0,.08));
     }
 
     .work-card-body{
@@ -489,7 +510,8 @@
         <article class="work-card">
           <div class="work-collage" data-open-work="${work.id}" aria-label="查看作品 ${work.number}">
             ${work.photos.map(photo => `
-              <div class="work-thumb">
+              <div class="work-thumb" style="--thumb-bg:url('${photo.src}')">
+                <div class="work-thumb-bg" aria-hidden="true"></div>
                 <img src="${photo.src}" alt="${work.title}" loading="lazy">
               </div>
             `).join("")}
