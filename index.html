@@ -35,6 +35,34 @@
       min-height: 340px;
     }
   }
+
+/* 人氣投票按鈕 */
+.button-vote {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 26px;
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #087da7;
+  font-weight: 900;
+  text-decoration: none;
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
+}
+
+.button-vote:hover {
+  background: #ffffff;
+  color: #087da7;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+}
+
 </style>
 
 </head>
@@ -708,37 +736,6 @@
       }
     });
   
-/* 人氣投票按鈕 */
-.button-vote {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 54px;
-  padding: 0 26px;
-
-  border: 2px solid #ffffff;
-  border-radius: 999px;
-
-  background: #ffffff;
-  color: #087da7;
-
-  font-weight: 900;
-  text-decoration: none;
-
-  transition:
-    transform .2s ease,
-    background .2s ease,
-    box-shadow .2s ease;
-}
-
-.button-vote:hover {
-  background: #ffffff;
-  color: #087da7;
-  border-color: #ffffff;
-
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
-}
 </script>
 </body>
 </html>
