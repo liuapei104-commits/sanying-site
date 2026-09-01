@@ -228,6 +228,18 @@
       letter-spacing:.08em;
     }
 
+    .work-author{
+      margin:0 0 8px;
+      color:#6b8793;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .work-author strong{
+      color:var(--vote-deep);
+      font-weight:900;
+    }
+
     .work-card h3{
       margin:12px 0 18px;
       color:var(--vote-deep);
@@ -336,6 +348,18 @@
       font-size:12px;
       font-weight:900;
       letter-spacing:.12em;
+    }
+
+    .work-modal-author{
+      margin:8px 0 4px;
+      color:#6b8793;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .work-modal-author strong{
+      color:var(--vote-deep);
+      font-weight:900;
     }
 
     .work-modal h2{
@@ -482,7 +506,7 @@
 
       <div class="works-title">
         <h2>參賽作品</h2>
-        <span>目前測試 1 組｜正式上線共 35 組</span>
+        <span>目前測試 2 組｜正式上線共 35 組</span>
       </div>
 
       <section class="works-grid" id="works-grid"></section>
@@ -497,6 +521,7 @@
 
       <div class="work-modal-inner">
         <span class="work-modal-kicker" id="work-modal-number"></span>
+        <p class="work-modal-author" id="work-modal-author"></p>
         <h2 id="work-modal-title"></h2>
         <p class="work-description" id="work-modal-description"></p>
 
@@ -518,6 +543,7 @@
       {
         id: "work01",
         number: "01",
+        participant: "崔淑苓",
         title: "捷運三鶯線的三峽地標－台北大學",
         voteCount: 0,
         description: "從三峽捷運線開通之後，觀光客假日擠在三峽老街，其實在三峽老街附近，還有一個台北大學，是一所藏著許多裝置藝術的寶藏學府。\n\n在校園裡，除了風光明媚的心湖，以及深受小朋友喜愛的黑天鵝之外，近年也陸續設置了許多裝置藝術，讓漫步校園的過程多了幾分浪漫與藝術氣息。\n\n如果來到三峽老街吃飽喝足，不妨再走進台北大學，慢慢欣賞這座校園裡的藝術風景，讓一趟三峽旅行，不只停留在美食與老街，也多一份心靈上的收穫。",
@@ -527,12 +553,27 @@
           { src: "images/works/work01-03.jpeg", title: "" },
           { src: "images/works/work01-04.jpeg", title: "" }
         ]
+      },
+      {
+        id: "work02",
+        number: "02",
+        participant: "張淑娟",
+        title: "三鶯解謎",
+        voteCount: 0,
+        description: "在充滿遊客與在地人的熱鬧小鎮，跟著主辦單位的謎題一同探索三鶯，是最容易了解當地過去歷史背景的方式。",
+        photos: [
+          { src: "images/works/work02-01.jpeg", title: "" },
+          { src: "images/works/work02-02.jpeg", title: "" },
+          { src: "images/works/work02-03.jpeg", title: "" },
+          { src: "images/works/work02-04.jpeg", title: "" }
+        ]
       }
     ];
 
     const grid = document.getElementById("works-grid");
     const modal = document.getElementById("work-modal");
     const modalNumber = document.getElementById("work-modal-number");
+    const modalAuthor = document.getElementById("work-modal-author");
     const modalTitle = document.getElementById("work-modal-title");
     const modalDescription = document.getElementById("work-modal-description");
     const modalPhotos = document.getElementById("work-modal-photos");
@@ -857,6 +898,7 @@
                 目前 ${Number(work.voteCount || 0).toLocaleString("zh-TW")} 票
               </span>
             </div>
+            <p class="work-author">參賽者｜<strong>${work.participant || "未提供"}</strong></p>
             <h3>${work.title}</h3>
 
             <div class="work-actions">
@@ -888,6 +930,7 @@
 
       modalNumber.textContent =
         `作品編號 ${work.number} ・ 目前 ${Number(work.voteCount || 0).toLocaleString("zh-TW")} 票`;
+      modalAuthor.innerHTML = `參賽者｜<strong>${work.participant || "未提供"}</strong>`;
       modalTitle.textContent = work.title;
       modalDescription.textContent = work.description;
 
