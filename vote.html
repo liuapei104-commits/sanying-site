@@ -199,6 +199,22 @@
       padding:22px;
     }
 
+
+    .work-meta-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:10px;
+    }
+
+    .work-votes{
+      color:var(--vote-blue);
+      font-size:13px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+
     .work-number{
       display:inline-flex;
       align-items:center;
@@ -247,6 +263,13 @@
       border:0;
       background:linear-gradient(135deg,var(--vote-blue),var(--vote-green));
       color:#fff;
+    }
+
+
+    .vote-button.is-voted{
+      background:#e8f8ef;
+      color:#17804b;
+      box-shadow:none;
     }
 
     .vote-button[disabled]{
@@ -496,6 +519,7 @@
         id: "work01",
         number: "01",
         title: "捷運三鶯線的三峽地標－台北大學",
+        voteCount: 0,
         description: "從三峽捷運線開通之後，觀光客假日擠在三峽老街，其實在三峽老街附近，還有一個台北大學，是一所藏著許多裝置藝術的寶藏學府。\n\n在校園裡，除了風光明媚的心湖，以及深受小朋友喜愛的黑天鵝之外，近年也陸續設置了許多裝置藝術，讓漫步校園的過程多了幾分浪漫與藝術氣息。\n\n如果來到三峽老街吃飽喝足，不妨再走進台北大學，慢慢欣賞這座校園裡的藝術風景，讓一趟三峽旅行，不只停留在美食與老街，也多一份心靈上的收穫。",
         photos: [
           { src: "images/works/work01-01.jpeg", title: "" },
@@ -521,10 +545,13 @@
 
     const LINE_LOGIN_URL = "https://asia-east1-sanying-photo-vote.cloudfunctions.net/lineLogin";
     const SESSION_STATUS_URL = "https://asia-east1-sanying-photo-vote.cloudfunctions.net/sessionStatus";
+    const VOTE_STATS_URL = "https://asia-east1-sanying-photo-vote.cloudfunctions.net/voteStats";
+    const VOTE_URL = "https://asia-east1-sanying-photo-vote.cloudfunctions.net/vote";
 
     let currentSession = "";
     let currentUser = null;
     let activeWorkId = "";
+    let todayVoteWorkId = null;
 
     function goToLineLogin() {
       const returnUrl = window.location.origin + window.location.pathname;
@@ -535,13 +562,92 @@
 
     function updateVoteButtons() {
       document.querySelectorAll("[data-vote-work]").forEach(button => {
-        button.textContent = currentUser ? "投這一票" : "LINE 登入後投票";
+        const workId = button.dataset.voteWork;
+
+        button.classList.remove("is-voted");
+
+        if (!currentUser) {
+          button.disabled = false;
+          button.textContent = "LINE 登入後投票";
+          return;
+        }
+
+        if (todayVoteWorkId) {
+          button.disabled = true;
+
+          if (workId === todayVoteWorkId) {
+            button.textContent = "今日已投這組";
+            button.classList.add("is-voted");
+          } else {
+            button.textContent = "今日已投票";
+          }
+          return;
+        }
+
+        button.disabled = false;
+        button.textContent = "投這一票";
       });
-      modalVoteButton.textContent = currentUser ? "投這一票" : "LINE 登入後投這一票";
+
+      if (modalVoteButton) {
+        modalVoteButton.classList.remove("is-voted");
+
+        if (!currentUser) {
+          modalVoteButton.disabled = false;
+          modalVoteButton.textContent = "LINE 登入後投這一票";
+        } else if (todayVoteWorkId) {
+          modalVoteButton.disabled = true;
+
+          if (activeWorkId === todayVoteWorkId) {
+            modalVoteButton.textContent = "今日已投這組";
+            modalVoteButton.classList.add("is-voted");
+          } else {
+            modalVoteButton.textContent = "今日已投票";
+          }
+        } else {
+          modalVoteButton.disabled = false;
+          modalVoteButton.textContent = "投這一票";
+        }
+      }
+    }
+
+    function updateVoteCountDisplay(workId) {
+      const work = works.find(item => item.id === workId);
+      if (!work) return;
+
+      document.querySelectorAll(`[data-vote-count="${workId}"]`).forEach(el => {
+        el.textContent = `目前 ${Number(work.voteCount || 0).toLocaleString("zh-TW")} 票`;
+      });
+
+      if (activeWorkId === workId && modalNumber) {
+        modalNumber.textContent =
+          `作品編號 ${work.number} ・ 目前 ${Number(work.voteCount || 0).toLocaleString("zh-TW")} 票`;
+      }
+    }
+
+    async function loadVoteStats() {
+      try {
+        const response = await fetch(VOTE_STATS_URL, {
+          method: "GET",
+          cache: "no-store"
+        });
+
+        if (!response.ok) return;
+
+        const data = await response.json();
+        const counts = data.counts || {};
+
+        works.forEach(work => {
+          work.voteCount = Number(counts[work.id] || 0);
+          updateVoteCountDisplay(work.id);
+        });
+      } catch (error) {
+        console.error("voteStats error:", error);
+      }
     }
 
     function setLoggedOut(message) {
       currentUser = null;
+      todayVoteWorkId = null;
       loginStatusTitle.textContent = "LINE 登入後即可投票";
       loginStatusText.textContent = message || "登入 LINE 後即可參與人氣票選。";
       loginStatusBadge.textContent = "尚未登入";
@@ -552,9 +658,12 @@
 
     function setLoggedIn(user) {
       currentUser = user || {};
+      todayVoteWorkId = currentUser.todayVoteWorkId || null;
       const name = currentUser.displayName || currentUser.name || "LINE 使用者";
       loginStatusTitle.textContent = name + "，已登入";
-      loginStatusText.textContent = "LINE 身分驗證完成。下一階段將接上每日限投 1 票的正式投票功能。";
+      loginStatusText.textContent = todayVoteWorkId
+        ? "你今天已經投過票了，明天 00:00（台灣時間）可再投 1 票。"
+        : "今日尚未投票；每個 LINE 帳號每天可投 1 票。";
       loginStatusBadge.textContent = "LINE 已登入";
       loginStatusBadge.className = "vote-status-badge is-login";
       lineLoginButton.hidden = true;
@@ -597,7 +706,7 @@
           return;
         }
 
-        setLoggedIn(data.user || data.profile || data);
+        setLoggedIn(data);
       } catch (error) {
         console.error(error);
         loginStatusTitle.textContent = "登入狀態確認失敗";
@@ -608,13 +717,88 @@
       }
     }
 
-    function handleVoteIntent(workId) {
+    async function handleVoteIntent(workId) {
       activeWorkId = workId || activeWorkId;
+
       if (!currentUser) {
         goToLineLogin();
         return;
       }
-      alert("LINE 登入驗證成功！下一步會接上每日限投 1 票的正式投票功能。");
+
+      if (todayVoteWorkId) {
+        alert("你今天已經投過票了，明天可以再投 1 票。");
+        return;
+      }
+
+      const work = works.find(item => item.id === activeWorkId);
+      if (!work) return;
+
+      const confirmed = confirm(
+        `確定要投給「${work.title}」嗎？\n\n每個 LINE 帳號每天只有 1 票，送出後今天不能更改。`
+      );
+
+      if (!confirmed) return;
+
+      document.querySelectorAll("[data-vote-work]").forEach(button => {
+        button.disabled = true;
+      });
+      if (modalVoteButton) modalVoteButton.disabled = true;
+
+      try {
+        const response = await fetch(VOTE_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${currentSession}`
+          },
+          body: JSON.stringify({
+            workId: activeWorkId
+          })
+        });
+
+        const data = await response.json().catch(() => ({}));
+
+        if (response.status === 401) {
+          sessionStorage.removeItem("sanyingVoteSession");
+          currentSession = "";
+          setLoggedOut("登入已失效，請重新使用 LINE 登入。");
+          alert("登入已失效，請重新登入 LINE。");
+          return;
+        }
+
+        if (response.status === 409 || data.alreadyVoted) {
+          todayVoteWorkId = data.todayVoteWorkId || data.workId || activeWorkId;
+          loginStatusText.textContent =
+            "你今天已經投過票了，明天 00:00（台灣時間）可再投 1 票。";
+          updateVoteButtons();
+          alert(data.message || "你今天已經投過票了。");
+          return;
+        }
+
+        if (!response.ok || !data.ok) {
+          throw new Error(data.message || "投票失敗");
+        }
+
+        todayVoteWorkId = data.todayVoteWorkId || activeWorkId;
+
+        if (typeof data.voteCount === "number") {
+          work.voteCount = data.voteCount;
+          updateVoteCountDisplay(work.id);
+        } else {
+          await loadVoteStats();
+        }
+
+        loginStatusText.textContent =
+          "今日投票完成！明天 00:00（台灣時間）可再投 1 票。";
+
+        updateVoteButtons();
+
+        alert("投票成功！謝謝你支持喜歡的作品。");
+      } catch (error) {
+        console.error("vote error:", error);
+        alert("投票失敗，請稍後再試。");
+        updateVoteButtons();
+      }
     }
 
     lineLoginButton.addEventListener("click", goToLineLogin);
@@ -633,7 +817,12 @@
           </div>
 
           <div class="work-card-body">
-            <span class="work-number">作品編號 ${work.number}</span>
+            <div class="work-meta-row">
+              <span class="work-number">作品編號 ${work.number}</span>
+              <span class="work-votes" data-vote-count="${work.id}">
+                目前 ${Number(work.voteCount || 0).toLocaleString("zh-TW")} 票
+              </span>
+            </div>
             <h3>${work.title}</h3>
 
             <div class="work-actions">
@@ -663,7 +852,8 @@
       if (!work) return;
       activeWorkId = workId;
 
-      modalNumber.textContent = `作品編號 ${work.number}`;
+      modalNumber.textContent =
+        `作品編號 ${work.number} ・ 目前 ${Number(work.voteCount || 0).toLocaleString("zh-TW")} 票`;
       modalTitle.textContent = work.title;
       modalDescription.textContent = work.description;
 
@@ -679,6 +869,7 @@
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
       document.body.classList.add("work-modal-open");
+      updateVoteButtons();
     }
 
     function closeWork() {
@@ -710,6 +901,7 @@
     }
 
     renderWorks();
+    loadVoteStats();
     checkSession();
   </script>
 </body>
