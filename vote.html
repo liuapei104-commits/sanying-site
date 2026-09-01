@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>人氣票選｜悠遊三鶯</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      background: #f4fbff;
+    }
+
+    .vote-page {
+      padding: 120px 24px 90px;
+    }
+
+    .vote-container {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+
+    .vote-heading {
+      max-width: 760px;
+      margin: 0 auto 45px;
+      text-align: center;
+    }
+
+    .vote-heading span {
+      color: #ff6685;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .16em;
+    }
+
+    .vote-heading h1 {
+      margin: 8px 0 14px;
+      color: #114c65;
+      font-size: clamp(38px, 6vw, 64px);
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .vote-heading p {
+      margin: 0;
+      color: #608293;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .vote-status {
+      max-width: 760px;
+      margin: 0 auto 42px;
+      padding: 24px 28px;
+      border-radius: 22px;
+      background: #fff;
+      box-shadow: 0 14px 36px rgba(8, 125, 167, .08);
+    }
+
+    .vote-status strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #114c65;
+      font-size: 20px;
+    }
+
+    .vote-status p {
+      margin: 0;
+      color: #608293;
+      line-height: 1.7;
+    }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .work-card {
+      overflow: hidden;
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: 0 14px 38px rgba(8, 125, 167, .08);
+    }
+
+    .work-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      aspect-ratio: 4 / 3;
+      background: #eaf8fd;
+    }
+
+    .work-photo {
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(8,125,167,.08);
+      color: #88afbe;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .work-content {
+      padding: 24px;
+    }
+
+    .work-number {
+      color: #ff6685;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+
+    .work-content h2 {
+      margin: 7px 0 10px;
+      color: #114c65;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .work-content p {
+      min-height: 68px;
+      margin: 0 0 18px;
+      color: #608293;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .vote-button {
+      width: 100%;
+      min-height: 48px;
+      border: 0;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, #087da7, #51cf89);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .works-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .vote-page {
+        padding: 100px 16px 70px;
+      }
+
+      .works-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+
+      <a class="logo" href="index.html">
+        <img
+          class="site-logo-image"
+          src="images/logo.png"
+          alt="悠遊三鶯"
+        >
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="開啟選單"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-nav">
+        <a href="index.html#news">最新消息</a>
+        <a href="index.html#about">活動介紹</a>
+        <a href="index.html#events">系列活動</a>
+        <a href="index.html#shops">合作店家優惠</a>
+        <a href="index.html#photo">攝影比賽專區</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="vote-page">
+
+    <div class="vote-container">
+
+      <section class="vote-heading">
+        <span>PHOTO CONTEST VOTE</span>
+
+        <h1>我的四格旅行<br>人氣票選</h1>
+
+        <p>
+          每組作品由 4 張照片共同呈現一段三鶯旅行故事。
+          欣賞作品後，登入 LINE 為你最喜歡的作品投下一票。
+        </p>
+      </section>
+
+      <section class="vote-status">
+        <strong>LINE 投票功能準備中</strong>
+        <p>
+          目前先進行作品頁面與版型測試，下一階段將加入 LINE 登入及每日投票功能。
+        </p>
+      </section>
+
+      <section class="works-grid">
+
+        <article class="work-card">
+
+          <div class="work-photos">
+            <div class="work-photo">照片 1</div>
+            <div class="work-photo">照片 2</div>
+            <div class="work-photo">照片 3</div>
+            <div class="work-photo">照片 4</div>
+          </div>
+
+          <div class="work-content">
+
+            <span class="work-number">作品編號 01</span>
+
+            <h2>作品名稱測試</h2>
+
+            <p>
+              這裡之後會放作品介紹，呈現四張照片共同訴說的三鶯旅行故事。
+            </p>
+
+            <button class="vote-button" type="button">
+              投這一票
+            </button>
+
+          </div>
+
+        </article>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const mainNav = document.querySelector(".main-nav");
+
+    if (menuToggle && mainNav) {
+      menuToggle.addEventListener("click", () => {
+        mainNav.classList.toggle("is-open");
+        menuToggle.classList.toggle("is-active");
+      });
+    }
+  </script>
+
+</body>
+</html>
