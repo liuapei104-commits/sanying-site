@@ -551,7 +551,8 @@
     let currentSession = "";
     let currentUser = null;
     let activeWorkId = "";
-    let todayVoteWorkId = null;
+    let todayVoteWorkIds = [];
+    let remainingVotes = 3;
 
     function goToLineLogin() {
       const returnUrl = window.location.origin + window.location.pathname;
@@ -561,8 +562,11 @@
     }
 
     function updateVoteButtons() {
+      const limitReached = remainingVotes <= 0;
+
       document.querySelectorAll("[data-vote-work]").forEach(button => {
         const workId = button.dataset.voteWork;
+        const alreadyVotedThisWork = todayVoteWorkIds.includes(workId);
 
         button.classList.remove("is-voted");
 
@@ -572,40 +576,41 @@
           return;
         }
 
-        if (todayVoteWorkId) {
+        if (alreadyVotedThisWork) {
           button.disabled = true;
+          button.textContent = "今日已投這組";
+          button.classList.add("is-voted");
+          return;
+        }
 
-          if (workId === todayVoteWorkId) {
-            button.textContent = "今日已投這組";
-            button.classList.add("is-voted");
-          } else {
-            button.textContent = "今日已投票";
-          }
+        if (limitReached) {
+          button.disabled = true;
+          button.textContent = "今日 3 票已投完";
           return;
         }
 
         button.disabled = false;
-        button.textContent = "投這一票";
+        button.textContent = `投這一票（剩 ${remainingVotes} 票）`;
       });
 
       if (modalVoteButton) {
+        const alreadyVotedThisWork = todayVoteWorkIds.includes(activeWorkId);
+
         modalVoteButton.classList.remove("is-voted");
 
         if (!currentUser) {
           modalVoteButton.disabled = false;
           modalVoteButton.textContent = "LINE 登入後投這一票";
-        } else if (todayVoteWorkId) {
+        } else if (alreadyVotedThisWork) {
           modalVoteButton.disabled = true;
-
-          if (activeWorkId === todayVoteWorkId) {
-            modalVoteButton.textContent = "今日已投這組";
-            modalVoteButton.classList.add("is-voted");
-          } else {
-            modalVoteButton.textContent = "今日已投票";
-          }
+          modalVoteButton.textContent = "今日已投這組";
+          modalVoteButton.classList.add("is-voted");
+        } else if (limitReached) {
+          modalVoteButton.disabled = true;
+          modalVoteButton.textContent = "今日 3 票已投完";
         } else {
           modalVoteButton.disabled = false;
-          modalVoteButton.textContent = "投這一票";
+          modalVoteButton.textContent = `投這一票（剩 ${remainingVotes} 票）`;
         }
       }
     }
@@ -647,7 +652,8 @@
 
     function setLoggedOut(message) {
       currentUser = null;
-      todayVoteWorkId = null;
+      todayVoteWorkIds = [];
+      remainingVotes = 3;
       loginStatusTitle.textContent = "LINE 登入後即可投票";
       loginStatusText.textContent = message || "登入 LINE 後即可參與人氣票選。";
       loginStatusBadge.textContent = "尚未登入";
@@ -658,12 +664,18 @@
 
     function setLoggedIn(user) {
       currentUser = user || {};
-      todayVoteWorkId = currentUser.todayVoteWorkId || null;
+      todayVoteWorkIds = Array.isArray(currentUser.todayVoteWorkIds)
+        ? currentUser.todayVoteWorkIds
+        : [];
+      remainingVotes = Number.isFinite(currentUser.remainingVotes)
+        ? currentUser.remainingVotes
+        : Math.max(0, 3 - todayVoteWorkIds.length);
       const name = currentUser.displayName || currentUser.name || "LINE 使用者";
       loginStatusTitle.textContent = name + "，已登入";
-      loginStatusText.textContent = todayVoteWorkId
-        ? "你今天已經投過票了，明天 00:00（台灣時間）可再投 1 票。"
-        : "今日尚未投票；每個 LINE 帳號每天可投 1 票。";
+      loginStatusText.textContent =
+        remainingVotes > 0
+          ? `今天可投 3 票，已投 ${3 - remainingVotes} 票，還有 ${remainingVotes} 票；同一作品不可重複投。`
+          : "今天的 3 票已全部投完，明天 00:00（台灣時間）可再投 3 票。";
       loginStatusBadge.textContent = "LINE 已登入";
       loginStatusBadge.className = "vote-status-badge is-login";
       lineLoginButton.hidden = true;
@@ -725,8 +737,13 @@
         return;
       }
 
-      if (todayVoteWorkId) {
-        alert("你今天已經投過票了，明天可以再投 1 票。");
+      if (todayVoteWorkIds.includes(activeWorkId)) {
+        alert("你今天已經投過這件作品了，請選擇其他作品。");
+        return;
+      }
+
+      if (remainingVotes <= 0) {
+        alert("你今天的 3 票已經全部投完，明天可以再投 3 票。");
         return;
       }
 
@@ -734,7 +751,7 @@
       if (!work) return;
 
       const confirmed = confirm(
-        `確定要投給「${work.title}」嗎？\n\n每個 LINE 帳號每天只有 1 票，送出後今天不能更改。`
+        `確定要投給「${work.title}」嗎？\n\n每個 LINE 帳號每天可投 3 票，同一作品不可重複投。\n你目前還有 ${remainingVotes} 票。`
       );
 
       if (!confirmed) return;
@@ -766,12 +783,21 @@
           return;
         }
 
-        if (response.status === 409 || data.alreadyVoted) {
-          todayVoteWorkId = data.todayVoteWorkId || data.workId || activeWorkId;
+        if (response.status === 409) {
+          todayVoteWorkIds = Array.isArray(data.todayVoteWorkIds)
+            ? data.todayVoteWorkIds
+            : todayVoteWorkIds;
+          remainingVotes = Number.isFinite(data.remainingVotes)
+            ? data.remainingVotes
+            : Math.max(0, 3 - todayVoteWorkIds.length);
+
           loginStatusText.textContent =
-            "你今天已經投過票了，明天 00:00（台灣時間）可再投 1 票。";
+            remainingVotes > 0
+              ? `今天可投 3 票，已投 ${3 - remainingVotes} 票，還有 ${remainingVotes} 票；同一作品不可重複投。`
+              : "今天的 3 票已全部投完，明天 00:00（台灣時間）可再投 3 票。";
+
           updateVoteButtons();
-          alert(data.message || "你今天已經投過票了。");
+          alert(data.message || "今天無法再投這件作品。");
           return;
         }
 
@@ -779,7 +805,13 @@
           throw new Error(data.message || "投票失敗");
         }
 
-        todayVoteWorkId = data.todayVoteWorkId || activeWorkId;
+        todayVoteWorkIds = Array.isArray(data.todayVoteWorkIds)
+          ? data.todayVoteWorkIds
+          : [...todayVoteWorkIds, activeWorkId];
+
+        remainingVotes = Number.isFinite(data.remainingVotes)
+          ? data.remainingVotes
+          : Math.max(0, 3 - todayVoteWorkIds.length);
 
         if (typeof data.voteCount === "number") {
           work.voteCount = data.voteCount;
@@ -789,11 +821,13 @@
         }
 
         loginStatusText.textContent =
-          "今日投票完成！明天 00:00（台灣時間）可再投 1 票。";
+          remainingVotes > 0
+            ? `投票成功！今天還有 ${remainingVotes} 票；同一作品不可重複投。`
+            : "今日 3 票已全部投完，明天 00:00（台灣時間）可再投 3 票。";
 
         updateVoteButtons();
 
-        alert("投票成功！謝謝你支持喜歡的作品。");
+        alert(data.message || "投票成功！");
       } catch (error) {
         console.error("vote error:", error);
         alert("投票失敗，請稍後再試。");
