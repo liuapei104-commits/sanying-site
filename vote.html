@@ -426,6 +426,29 @@
       overflow:hidden;
     }
 
+
+    .vote-toast{
+      position:fixed;
+      left:50%;
+      bottom:28px;
+      z-index:12000;
+      transform:translate(-50%,20px);
+      max-width:min(520px,calc(100% - 32px));
+      padding:14px 18px;
+      border-radius:14px;
+      background:rgba(18,75,99,.96);
+      color:#fff;
+      font-size:14px;
+      font-weight:800;
+      line-height:1.6;
+      box-shadow:0 16px 40px rgba(0,0,0,.2);
+      opacity:0;
+      pointer-events:none;
+      transition:.22s ease;
+    }
+    .vote-toast.is-show{opacity:1;transform:translate(-50%,0)}
+    .vote-toast.is-error{background:rgba(176,61,61,.96)}
+
     @media(max-width:900px){
       .works-grid{
         grid-template-columns:repeat(2,minmax(0,1fr));
@@ -534,6 +557,8 @@
     </section>
   </div>
 
+  <div class="vote-toast" id="vote-toast" role="status" aria-live="polite"></div>
+
   <script>
     /* ==========================
        作品資料
@@ -583,6 +608,7 @@
     const loginStatusBadge = document.getElementById("login-status-badge");
     const lineLoginButton = document.getElementById("line-login-button");
     const modalVoteButton = document.getElementById("modal-vote-button");
+    const voteToast = document.getElementById("vote-toast");
 
     const LINE_LOGIN_URL = "https://asia-east1-sanying-photo-vote.cloudfunctions.net/lineLogin";
     const SESSION_STATUS_URL = "https://asia-east1-sanying-photo-vote.cloudfunctions.net/sessionStatus";
@@ -594,6 +620,17 @@
     let activeWorkId = "";
     let todayVoteWorkIds = [];
     let remainingVotes = 3;
+
+    let toastTimer = null;
+
+    function showVoteToast(message, isError = false) {
+      if (!voteToast) return;
+      voteToast.textContent = message;
+      voteToast.classList.toggle("is-error", isError);
+      voteToast.classList.add("is-show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => voteToast.classList.remove("is-show"), 2600);
+    }
 
     function goToLineLogin() {
       const returnUrl = window.location.origin + window.location.pathname;
@@ -772,6 +809,7 @@
 
     async function handleVoteIntent(workId) {
       activeWorkId = workId || activeWorkId;
+      showVoteToast("已選擇作品，正在準備投票…");
 
       if (!currentUser) {
         goToLineLogin();
@@ -779,11 +817,13 @@
       }
 
       if (todayVoteWorkIds.includes(activeWorkId)) {
+        showVoteToast("你今天已經投過這件作品了，請選擇其他作品。", true);
         alert("你今天已經投過這件作品了，請選擇其他作品。");
         return;
       }
 
       if (remainingVotes <= 0) {
+        showVoteToast("你今天的 3 票已經全部投完，明天可以再投 3 票。", true);
         alert("你今天的 3 票已經全部投完，明天可以再投 3 票。");
         return;
       }
@@ -868,16 +908,40 @@
 
         updateVoteButtons();
 
+        showVoteToast(data.message || "投票成功！");
         alert(data.message || "投票成功！");
       } catch (error) {
         console.error("vote error:", error);
+        showVoteToast("投票失敗，請稍後再試。", true);
         alert("投票失敗，請稍後再試。");
         updateVoteButtons();
       }
     }
 
     lineLoginButton.addEventListener("click", goToLineLogin);
-    modalVoteButton.addEventListener("click", () => handleVoteIntent(activeWorkId));
+
+    if (modalVoteButton) {
+      modalVoteButton.addEventListener("click", () => handleVoteIntent(activeWorkId));
+    }
+
+    /* 使用事件委派，確保動態產生的作品按鈕都能正常點擊 */
+    grid.addEventListener("click", (event) => {
+      const voteButton = event.target.closest("[data-vote-work]");
+
+      if (voteButton && grid.contains(voteButton)) {
+        event.preventDefault();
+        event.stopPropagation();
+        handleVoteIntent(voteButton.dataset.voteWork);
+        return;
+      }
+
+      const openButton = event.target.closest("[data-open-work]");
+
+      if (openButton && grid.contains(openButton)) {
+        event.preventDefault();
+        openWork(openButton.dataset.openWork);
+      }
+    });
 
     function renderWorks() {
       grid.innerHTML = works.map(work => `
@@ -913,13 +977,6 @@
         </article>
       `).join("");
 
-      document.querySelectorAll("[data-open-work]").forEach(button => {
-        button.addEventListener("click", () => openWork(button.dataset.openWork));
-      });
-
-      document.querySelectorAll("[data-vote-work]").forEach(button => {
-        button.addEventListener("click", () => handleVoteIntent(button.dataset.voteWork));
-      });
       updateVoteButtons();
     }
 
