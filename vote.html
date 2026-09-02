@@ -331,36 +331,6 @@
       opacity:.55;
     }
 
-
-    .load-more-wrap{
-      display:flex;
-      justify-content:center;
-      margin-top:34px;
-    }
-
-    .load-more-button{
-      min-width:210px;
-      min-height:52px;
-      padding:0 26px;
-      border:0;
-      border-radius:999px;
-      background:linear-gradient(135deg,var(--vote-blue),var(--vote-green));
-      color:#fff;
-      font-family:inherit;
-      font-size:15px;
-      font-weight:900;
-      cursor:pointer;
-      box-shadow:0 10px 24px rgba(11,120,158,.16);
-    }
-
-    .load-more-button:hover{
-      transform:translateY(-1px);
-    }
-
-    .load-more-button[hidden]{
-      display:none;
-    }
-
     /* 作品完整內容彈窗 */
     .work-modal{
       position:fixed;
@@ -635,12 +605,6 @@
       </div>
 
       <section class="works-grid" id="works-grid"></section>
-
-      <div class="load-more-wrap">
-        <button class="load-more-button" id="load-more-button" type="button">
-          載入更多作品
-        </button>
-      </div>
     </div>
   </main>
 
@@ -1179,7 +1143,6 @@
     const lineLoginButton = document.getElementById("line-login-button");
     const modalVoteButton = document.getElementById("modal-vote-button");
     const voteToast = document.getElementById("vote-toast");
-    const loadMoreButton = document.getElementById("load-more-button");
 
     const LINE_LOGIN_URL = "https://asia-east1-sanying-photo-vote.cloudfunctions.net/lineLogin";
     const SESSION_STATUS_URL = "https://asia-east1-sanying-photo-vote.cloudfunctions.net/sessionStatus";
@@ -1192,8 +1155,6 @@
     let todayVoteWorkIds = [];
     let remainingVotes = 3;
 
-    const WORKS_PER_PAGE = 9;
-    let visibleWorkCount = WORKS_PER_PAGE;
 
     let toastTimer = null;
 
@@ -1518,9 +1479,7 @@
     });
 
     function renderWorks() {
-      const visibleWorks = works.slice(0, visibleWorkCount);
-
-      grid.innerHTML = visibleWorks.map(work => `
+      grid.innerHTML = works.map(work => `
         <article class="work-card">
           <div class="work-collage" data-open-work="${work.id}" aria-label="查看作品 ${work.number}">
             ${work.photos.map(photo => `
@@ -1553,20 +1512,7 @@
         </article>
       `).join("");
 
-      if (loadMoreButton) {
-        const hasMore = visibleWorkCount < works.length;
-        loadMoreButton.hidden = !hasMore;
-
-        if (hasMore) {
-          const remaining = works.length - visibleWorkCount;
-          loadMoreButton.textContent = `載入更多作品（剩 ${remaining} 組）`;
-        }
-      }
-
-      visibleWorks.forEach(work => {
-        updateVoteCountDisplay(work.id);
-      });
-
+      works.forEach(work => updateVoteCountDisplay(work.id));
       updateVoteButtons();
     }
 
@@ -1624,15 +1570,6 @@
       });
     }
 
-    if (loadMoreButton) {
-      loadMoreButton.addEventListener("click", () => {
-        visibleWorkCount = Math.min(
-          visibleWorkCount + WORKS_PER_PAGE,
-          works.length
-        );
-        renderWorks();
-      });
-    }
 
     renderWorks();
     loadVoteStats();
