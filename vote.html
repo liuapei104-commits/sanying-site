@@ -64,6 +64,48 @@
       line-height:1.85;
     }
 
+
+    .vote-info-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+      margin:0 auto 22px;
+    }
+
+    .vote-info-card{
+      padding:20px 22px;
+      border:1px solid rgba(11,120,158,.12);
+      border-radius:20px;
+      background:#fff;
+      box-shadow:0 12px 28px rgba(10,93,126,.06);
+    }
+
+    .vote-info-card h3{
+      margin:0 0 10px;
+      color:var(--vote-deep);
+      font-size:18px;
+      font-weight:900;
+    }
+
+    .vote-info-card p{
+      margin:0;
+      color:#557987;
+      font-size:14px;
+      line-height:1.75;
+    }
+
+    .vote-score-list{
+      margin:10px 0 0;
+      padding-left:20px;
+      color:#557987;
+      font-size:14px;
+      line-height:1.75;
+    }
+
+    .vote-score-list strong{
+      color:var(--vote-deep);
+    }
+
     .vote-status{
       display:flex;
       align-items:center;
@@ -480,6 +522,10 @@
     .vote-toast.is-error{background:rgba(176,61,61,.96)}
 
     @media(max-width:900px){
+      .vote-info-grid{
+        grid-template-columns:1fr;
+      }
+
       .works-grid{
         grid-template-columns:repeat(2,minmax(0,1fr));
       }
@@ -544,8 +590,34 @@
         <h1>我的四格旅行<br>人氣票選</h1>
         <p>
           每組作品由 4 張照片共同呈現一段三鶯旅行故事。
-          欣賞完整作品後，登入 LINE 為你最喜歡的作品投下一票。
+          欣賞完整作品後，登入 LINE 為喜歡的作品投票，每人每日可投 3 票。
         </p>
+      </section>
+
+      <section class="vote-info-grid" aria-label="人氣票選資訊">
+        <article class="vote-info-card">
+          <h3>投票期間</h3>
+          <p>2026/9/4（五）— 2026/9/14（日）</p>
+        </article>
+
+        <article class="vote-info-card">
+          <h3>投票方式</h3>
+          <p>使用 LINE 登入後，每人每日可投 3 票；每件作品每日僅限投 1 次。</p>
+        </article>
+
+        <article class="vote-info-card">
+          <h3>票數說明</h3>
+          <p>人氣票選結果將作為評選加分依據：</p>
+          <ul class="vote-score-list">
+            <li><strong>第一名</strong>｜總平均分 +5 分</li>
+            <li><strong>第二名</strong>｜總平均分 +4 分</li>
+            <li><strong>第三名</strong>｜總平均分 +3 分</li>
+            <li><strong>第四名</strong>｜總平均分 +2 分</li>
+            <li><strong>第五名</strong>｜總平均分 +1 分</li>
+            <li><strong>第六名（含）以後</strong>｜不加分</li>
+          </ul>
+          <p style="margin-top:10px;">票數將依系統紀錄為準，主辦單位保留審核權利。</p>
+        </article>
       </section>
 
       <section class="vote-status">
