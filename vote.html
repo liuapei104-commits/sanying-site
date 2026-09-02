@@ -106,6 +106,50 @@
       color:var(--vote-deep);
     }
 
+
+    .vote-window-status{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      max-width:880px;
+      margin:0 auto 18px;
+      padding:16px 20px;
+      border-radius:18px;
+      background:#fff;
+      border:1px solid rgba(11,120,158,.10);
+      box-shadow:0 10px 26px rgba(10,93,126,.05);
+    }
+
+    .vote-window-status strong{
+      color:var(--vote-deep);
+      font-size:16px;
+      font-weight:900;
+    }
+
+    .vote-window-status span{
+      flex:0 0 auto;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .vote-window-status.is-upcoming span{
+      background:#fff3c8;
+      color:#9a6d00;
+    }
+
+    .vote-window-status.is-open span{
+      background:#e8f8ef;
+      color:#17804b;
+    }
+
+    .vote-window-status.is-closed span{
+      background:#fff0f0;
+      color:#b84444;
+    }
+
     .vote-status{
       display:flex;
       align-items:center;
@@ -506,6 +550,7 @@
         padding:100px 16px 65px;
       }
 
+      .vote-window-status,
       .vote-status{
         align-items:flex-start;
         flex-direction:column;
@@ -588,6 +633,11 @@
           </ul>
           <p style="margin-top:10px;">票數將依系統紀錄為準，主辦單位保留審核權利。</p>
         </article>
+      </section>
+
+      <section class="vote-window-status is-upcoming" id="vote-window-status">
+        <strong id="vote-window-text">投票將於 2026/9/4 00:00 開放</strong>
+        <span id="vote-window-badge">尚未開始</span>
       </section>
 
       <section class="vote-status">
@@ -1143,6 +1193,9 @@
     const lineLoginButton = document.getElementById("line-login-button");
     const modalVoteButton = document.getElementById("modal-vote-button");
     const voteToast = document.getElementById("vote-toast");
+    const voteWindowStatus = document.getElementById("vote-window-status");
+    const voteWindowText = document.getElementById("vote-window-text");
+    const voteWindowBadge = document.getElementById("vote-window-badge");
 
     const LINE_LOGIN_URL = "https://asia-east1-sanying-photo-vote.cloudfunctions.net/lineLogin";
     const SESSION_STATUS_URL = "https://asia-east1-sanying-photo-vote.cloudfunctions.net/sessionStatus";
@@ -1154,6 +1207,10 @@
     let activeWorkId = "";
     let todayVoteWorkIds = [];
     let remainingVotes = 3;
+
+    const VOTING_START = new Date("2026-09-04T00:00:00+08:00").getTime();
+    const VOTING_END = new Date("2026-09-14T23:59:59+08:00").getTime();
+    let votingPhase = "upcoming";
 
 
     let toastTimer = null;
@@ -1174,6 +1231,33 @@
       window.location.href = url.toString();
     }
 
+    function getVotingPhase(now = Date.now()) {
+      if (now < VOTING_START) return "upcoming";
+      if (now > VOTING_END) return "closed";
+      return "open";
+    }
+
+    function updateVotingWindowStatus() {
+      votingPhase = getVotingPhase();
+
+      if (!voteWindowStatus || !voteWindowText || !voteWindowBadge) return;
+
+      voteWindowStatus.className = `vote-window-status is-${votingPhase}`;
+
+      if (votingPhase === "upcoming") {
+        voteWindowText.textContent = "投票將於 2026/9/4 00:00 開放";
+        voteWindowBadge.textContent = "尚未開始";
+      } else if (votingPhase === "open") {
+        voteWindowText.textContent = "人氣投票進行中｜2026/9/14 23:59 截止";
+        voteWindowBadge.textContent = "投票進行中";
+      } else {
+        voteWindowText.textContent = "人氣投票已於 2026/9/14 23:59 截止";
+        voteWindowBadge.textContent = "投票已截止";
+      }
+
+      updateVoteButtons();
+    }
+
     function updateVoteButtons() {
       const limitReached = remainingVotes <= 0;
 
@@ -1182,6 +1266,18 @@
         const alreadyVotedThisWork = todayVoteWorkIds.includes(workId);
 
         button.classList.remove("is-voted");
+
+        if (votingPhase === "upcoming") {
+          button.disabled = true;
+          button.textContent = "9/4 00:00 開放投票";
+          return;
+        }
+
+        if (votingPhase === "closed") {
+          button.disabled = true;
+          button.textContent = "投票已截止";
+          return;
+        }
 
         if (!currentUser) {
           button.disabled = false;
@@ -1211,7 +1307,13 @@
 
         modalVoteButton.classList.remove("is-voted");
 
-        if (!currentUser) {
+        if (votingPhase === "upcoming") {
+          modalVoteButton.disabled = true;
+          modalVoteButton.textContent = "9/4 00:00 開放投票";
+        } else if (votingPhase === "closed") {
+          modalVoteButton.disabled = true;
+          modalVoteButton.textContent = "投票已截止";
+        } else if (!currentUser) {
           modalVoteButton.disabled = false;
           modalVoteButton.textContent = "LINE 登入後投這一票";
         } else if (alreadyVotedThisWork) {
@@ -1344,6 +1446,21 @@
 
     async function handleVoteIntent(workId) {
       activeWorkId = workId || activeWorkId;
+
+      votingPhase = getVotingPhase();
+
+      if (votingPhase === "upcoming") {
+        showVoteToast("投票將於 2026/9/4 00:00 開放。", true);
+        alert("投票將於 2026/9/4 00:00 開放。");
+        return;
+      }
+
+      if (votingPhase === "closed") {
+        showVoteToast("本次人氣投票已於 2026/9/14 23:59 截止。", true);
+        alert("本次人氣投票已於 2026/9/14 23:59 截止。");
+        return;
+      }
+
       showVoteToast("已選擇作品，正在準備投票…");
 
       if (!currentUser) {
@@ -1570,6 +1687,9 @@
       });
     }
 
+
+    updateVotingWindowStatus();
+    setInterval(updateVotingWindowStatus, 30000);
 
     renderWorks();
     loadVoteStats();
