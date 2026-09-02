@@ -289,6 +289,36 @@
       opacity:.55;
     }
 
+
+    .load-more-wrap{
+      display:flex;
+      justify-content:center;
+      margin-top:34px;
+    }
+
+    .load-more-button{
+      min-width:210px;
+      min-height:52px;
+      padding:0 26px;
+      border:0;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--vote-blue),var(--vote-green));
+      color:#fff;
+      font-family:inherit;
+      font-size:15px;
+      font-weight:900;
+      cursor:pointer;
+      box-shadow:0 10px 24px rgba(11,120,158,.16);
+    }
+
+    .load-more-button:hover{
+      transform:translateY(-1px);
+    }
+
+    .load-more-button[hidden]{
+      display:none;
+    }
+
     /* 作品完整內容彈窗 */
     .work-modal{
       position:fixed;
@@ -533,6 +563,12 @@
       </div>
 
       <section class="works-grid" id="works-grid"></section>
+
+      <div class="load-more-wrap">
+        <button class="load-more-button" id="load-more-button" type="button">
+          載入更多作品
+        </button>
+      </div>
     </div>
   </main>
 
@@ -562,7 +598,7 @@
   <script>
     /* ==========================
        作品資料
-       之後第 10～35 組都加在這裡
+       35 組作品資料
     ========================== */
     const works = [
       {
@@ -615,10 +651,10 @@
         voteCount: 0,
         description: "由小夥伴帶領下的三鶯解謎旅行，沿途看著風景、吃著美食，一路破關斬將，最後找到喵喵及藍狗合影留下紀念。",
         photos: [
-          { src: "images/works/work04-01.jpg", title: "" },
-          { src: "images/works/work04-02.jpg", title: "" },
-          { src: "images/works/work04-03.jpg", title: "" },
-          { src: "images/works/work04-04.jpg", title: "" }
+          { src: "images/works/work05-01.jpg", title: "" },
+          { src: "images/works/work05-02.jpg", title: "" },
+          { src: "images/works/work05-03.jpg", title: "" },
+          { src: "images/works/work05-04.jpg", title: "" }
         ]
       },
       {
@@ -629,10 +665,10 @@
         voteCount: 0,
         description: "三鶯的魅力，從來不只是熱門景點的打卡瞬間，而是藏在街頭轉角、車窗外流動的風景、公車裡的輕鬆節奏，以及文化空間裡靜靜綻放的色彩與故事。\n\n這組作品以四張照片串聯一趟屬於自己的三鶯慢旅行：從鶯歌街頭守護著旅人的白色神鳥「守望鶯歌」出發，感受在地街景與生活溫度；搭上三鶯線捷運，從車窗望見高架軌道與住宅群交織的現代日常；再轉乘731「悠遊三鶯」彩繪公車，抵達客家文化園區，與可愛的氣球角色一起展開輕鬆的探索；最後走進室內，讓巨大的紙花裝置與白鷺剪影，訴說三鶯人文與自然交織的細膩感動。\n\n透過鏡頭，記錄的不只是風景，更是沿途發現的人情、交通、藝術與生活節奏——這就是我眼中，最真實、最迷人的三鶯印象。",
         photos: [
-          { src: "images/works/work05-01.jpg", title: "" },
-          { src: "images/works/work05-02.jpg", title: "" },
-          { src: "images/works/work05-03.jpg", title: "" },
-          { src: "images/works/work05-04.jpg", title: "" }
+          { src: "images/works/work04-01.jpg", title: "" },
+          { src: "images/works/work04-02.jpg", title: "" },
+          { src: "images/works/work04-03.jpg", title: "" },
+          { src: "images/works/work04-04.jpg", title: "" }
         ]
       },
       {
@@ -919,7 +955,7 @@
         id: "work26",
         number: "26",
         participant: "彭泰宏",
-        title:" 如夢之夢",
+        title: "如夢之夢",
         voteCount: 0,
         description: "新北市美術館，位於以陶瓷工藝聞名世界的鶯歌，銀白色的建築坐落在鶯歌溪與大漢溪匯流處的新生地，取三鶯河岸地帶常見的蘆葦做為設計元素，外牆以高低錯落的管狀線條形塑出蘆葦隨風搖曳的意象。鶯歌區新北市美術館的獨特亮點是其建築設計的倒影效果，彷彿電影「全面啟動」裡，被女主角以念力所摺疊街區的場景。",
         photos: [
@@ -1071,6 +1107,7 @@
     const lineLoginButton = document.getElementById("line-login-button");
     const modalVoteButton = document.getElementById("modal-vote-button");
     const voteToast = document.getElementById("vote-toast");
+    const loadMoreButton = document.getElementById("load-more-button");
 
     const LINE_LOGIN_URL = "https://asia-east1-sanying-photo-vote.cloudfunctions.net/lineLogin";
     const SESSION_STATUS_URL = "https://asia-east1-sanying-photo-vote.cloudfunctions.net/sessionStatus";
@@ -1082,6 +1119,9 @@
     let activeWorkId = "";
     let todayVoteWorkIds = [];
     let remainingVotes = 3;
+
+    const WORKS_PER_PAGE = 9;
+    let visibleWorkCount = WORKS_PER_PAGE;
 
     let toastTimer = null;
 
@@ -1406,13 +1446,15 @@
     });
 
     function renderWorks() {
-      grid.innerHTML = works.map(work => `
+      const visibleWorks = works.slice(0, visibleWorkCount);
+
+      grid.innerHTML = visibleWorks.map(work => `
         <article class="work-card">
           <div class="work-collage" data-open-work="${work.id}" aria-label="查看作品 ${work.number}">
             ${work.photos.map(photo => `
               <div class="work-thumb" style="--thumb-bg:url('${photo.src}')">
                 <div class="work-thumb-bg" aria-hidden="true"></div>
-                <img src="${photo.src}" alt="${work.title}" loading="lazy">
+                <img src="${photo.src}" alt="${work.title}" loading="lazy" decoding="async">
               </div>
             `).join("")}
           </div>
@@ -1438,6 +1480,20 @@
           </div>
         </article>
       `).join("");
+
+      if (loadMoreButton) {
+        const hasMore = visibleWorkCount < works.length;
+        loadMoreButton.hidden = !hasMore;
+
+        if (hasMore) {
+          const remaining = works.length - visibleWorkCount;
+          loadMoreButton.textContent = `載入更多作品（剩 ${remaining} 組）`;
+        }
+      }
+
+      visibleWorks.forEach(work => {
+        updateVoteCountDisplay(work.id);
+      });
 
       updateVoteButtons();
     }
@@ -1493,6 +1549,16 @@
         const isOpen = mainNav.classList.toggle("is-open");
         menuToggle.classList.toggle("is-active", isOpen);
         menuToggle.setAttribute("aria-expanded", String(isOpen));
+      });
+    }
+
+    if (loadMoreButton) {
+      loadMoreButton.addEventListener("click", () => {
+        visibleWorkCount = Math.min(
+          visibleWorkCount + WORKS_PER_PAGE,
+          works.length
+        );
+        renderWorks();
       });
     }
 
