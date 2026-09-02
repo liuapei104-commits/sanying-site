@@ -612,7 +612,7 @@
       <section class="vote-info-grid" aria-label="人氣票選資訊">
         <article class="vote-info-card">
           <h3>投票期間</h3>
-          <p>2026/9/4（五）— 2026/9/14（日）</p>
+          <p>2026/9/4（五）— 2026/9/13（日）</p>
         </article>
 
         <article class="vote-info-card">
@@ -1209,7 +1209,7 @@
     let remainingVotes = 3;
 
     const VOTING_START = new Date("2026-09-04T00:00:00+08:00").getTime();
-    const VOTING_END = new Date("2026-09-14T23:59:59+08:00").getTime();
+    const VOTING_END = new Date("2026-09-13T23:59:59+08:00").getTime();
     let votingPhase = "upcoming";
 
 
@@ -1248,10 +1248,10 @@
         voteWindowText.textContent = "投票將於 2026/9/4 00:00 開放";
         voteWindowBadge.textContent = "尚未開始";
       } else if (votingPhase === "open") {
-        voteWindowText.textContent = "人氣投票進行中｜2026/9/14 23:59 截止";
+        voteWindowText.textContent = "人氣投票進行中｜2026/9/13 23:59 截止";
         voteWindowBadge.textContent = "投票進行中";
       } else {
-        voteWindowText.textContent = "人氣投票已於 2026/9/14 23:59 截止";
+        voteWindowText.textContent = "人氣投票已於 2026/9/13 23:59 截止";
         voteWindowBadge.textContent = "投票已截止";
       }
 
@@ -1456,8 +1456,8 @@
       }
 
       if (votingPhase === "closed") {
-        showVoteToast("本次人氣投票已於 2026/9/14 23:59 截止。", true);
-        alert("本次人氣投票已於 2026/9/14 23:59 截止。");
+        showVoteToast("本次人氣投票已於 2026/9/13 23:59 截止。", true);
+        alert("本次人氣投票已於 2026/9/13 23:59 截止。");
         return;
       }
 
