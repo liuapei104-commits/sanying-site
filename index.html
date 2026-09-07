@@ -63,6 +63,35 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
 }
 
+
+/* 人氣票選開放狀態 */
+.vote-live-panel {
+  text-align: center;
+}
+
+.vote-live-panel .vote-live-date {
+  margin: 14px 0 24px;
+  color: #0b5572;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.vote-live-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.vote-live-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+}
+
 </style>
 
 </head>
@@ -153,14 +182,14 @@
 </div>
 <span aria-hidden="true" class="news-arrow">→</span>
 </a>
-<a class="news-item" href="#">
-<time>
-<span>COMING</span>
-<small>SOON</small>
+<a class="news-item" href="vote.html">
+<time datetime="2026-09-04">
+<span>09.04</span>
+<small>2026</small>
 </time>
 <div class="news-content">
 <span class="news-tag">人氣票選</span>
-<h3>攝影作品人氣票選時程與投票方式即將公布</h3>
+<h3>「我的四格旅行」人氣票選熱烈進行中！立即為喜歡的作品投票</h3>
 </div>
 <span aria-hidden="true" class="news-arrow">→</span>
 </a>
@@ -444,11 +473,12 @@
 <h2>人氣票選</h2>
 <p>為喜歡的三鶯旅程投下一票，人氣排名可獲得評選加分。</p>
 </div>
-<div class="coming-panel">
+<div class="coming-panel vote-live-panel">
 <div class="coming-icon">♡</div>
-<h3>人氣票選即將開放</h3>
-<p>參賽作品完成初步審核後，將於活動官網公開展示。</p>
-<span>COMING SOON</span>
+<h3>人氣票選熱烈進行中</h3>
+<p>登入 LINE，每人每日可投 3 票，為你喜歡的三鶯旅行作品加油！</p>
+<p class="vote-live-date">投票期間｜2026.09.04－09.13</p>
+<a class="button button-primary vote-live-button" href="vote.html">立即前往投票 →</a>
 </div>
 </div>
 </section>
