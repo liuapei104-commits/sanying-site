@@ -92,6 +92,25 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
 }
 
+
+/* 得獎名單最新消息彈窗 */
+.news-result-modal{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:24px}
+.news-result-modal.is-open{display:flex}
+.news-result-backdrop{position:absolute;inset:0;background:rgba(4,43,59,.68);backdrop-filter:blur(5px)}
+.news-result-dialog{position:relative;z-index:1;width:min(760px,100%);max-height:86vh;overflow:auto;padding:34px;border-radius:26px;background:#fff;box-shadow:0 28px 80px rgba(0,0,0,.22)}
+.news-result-close{position:absolute;top:16px;right:18px;width:42px;height:42px;border:0;border-radius:50%;background:#eef7f8;color:#0b5572;font-size:26px;cursor:pointer}
+.news-result-kicker{display:block;margin-bottom:8px;color:#0b8f9b;font-size:13px;font-weight:900;letter-spacing:.12em}
+.news-result-dialog h2{margin:0 50px 10px 0;color:#0b5572;font-size:clamp(25px,4vw,34px);line-height:1.35}
+.news-result-lead{margin:0 0 24px;color:#557987;line-height:1.8}
+.news-result-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 26px}
+.news-result-item{padding:16px 18px;border:1px solid rgba(11,120,158,.12);border-radius:16px;background:#f7fbfb}
+.news-result-item strong{display:block;margin-bottom:5px;color:#0b5572;font-size:15px}
+.news-result-item span{display:block;color:#345f70;font-size:14px;line-height:1.6}
+.news-result-notice{padding:20px 22px;border-radius:18px;background:#eef8f5;color:#345f70;line-height:1.8}
+.news-result-notice strong{color:#087da7}
+body.news-result-open{overflow:hidden}
+@media(max-width:640px){.news-result-dialog{padding:28px 20px 22px}.news-result-list{grid-template-columns:1fr}}
+
 </style>
 
 </head>
@@ -160,6 +179,16 @@
 </a>
 </div>
 <div class="news-list">
+
+<a class="news-item" href="#" data-open-news-result="">
+<time datetime="2026-09-21"><span>09.21</span><small>2026</small></time>
+<div class="news-content">
+<span class="news-tag">得獎公告</span>
+<h3>悠遊三鶯 × 我的四格旅行｜攝影徵件比賽得獎名單公布</h3>
+</div>
+<span aria-hidden="true" class="news-arrow">→</span>
+</a>
+
 <a class="news-item" href="#">
 <time datetime="2026-08-01">
 <span>08.01</span>
@@ -643,6 +672,31 @@
 </div>
 </section>
 </div>
+
+<div aria-hidden="true" class="news-result-modal" id="news-result-modal">
+<div class="news-result-backdrop" data-close-news-result=""></div>
+<section aria-labelledby="news-result-title" aria-modal="true" class="news-result-dialog" role="dialog">
+<button aria-label="關閉得獎名單" class="news-result-close" data-close-news-result="" type="button">×</button>
+<span class="news-result-kicker">PHOTO CONTEST RESULTS</span>
+<h2 id="news-result-title">悠遊三鶯 × 我的四格旅行<br/>得獎名單</h2>
+<p class="news-result-lead">感謝每一位參賽者用四張照片記錄三鶯旅程。經評選後，本次攝影徵件比賽得獎名單如下：</p>
+<div class="news-result-list">
+<div class="news-result-item"><strong>第一名｜陳O君</strong><span>《藍天下的祖師廟》</span></div>
+<div class="news-result-item"><strong>第二名｜洪O容</strong><span>《他的高度，三鶯的風景》</span></div>
+<div class="news-result-item"><strong>第三名｜林O銘</strong><span>《走進藝境》</span></div>
+<div class="news-result-item"><strong>第四名｜林O妤</strong><span>《跟著我，去美術館旅行》</span></div>
+<div class="news-result-item"><strong>第五名｜林O宇</strong><span>《穿越三鶯》</span></div>
+<div class="news-result-item"><strong>第六名｜吳O諄</strong><span>《慢一點，三峽》</span></div>
+<div class="news-result-item"><strong>第七名｜陳O純</strong><span>《走一趟，遇見》</span></div>
+<div class="news-result-item"><strong>第八名｜吳O珠</strong><span>《一趟旅行，兩座老城》</span></div>
+</div>
+<div class="news-result-notice">
+<strong>得獎聯繫說明</strong><br/>
+主辦單位將於 <strong>2026/9/22～9/30</strong> 期間主動與各得獎人聯繫，並提供獲獎相關資訊及資料填寫表單。請得獎人依通知內容於指定期限內完成表單填寫及回傳，以利後續獎金、獎狀及相關領獎作業辦理。實際通知方式及應備資料，以主辦單位聯繫內容為準。
+</div>
+</section>
+</div>
+
 <footer class="site-footer">
 <div class="footer-inner">
 <div class="footer-brand">
@@ -766,6 +820,13 @@
       }
     });
   
+
+/* 最新消息－攝影比賽得獎名單 */
+const newsResultModal=document.getElementById("news-result-modal");
+document.querySelectorAll("[data-open-news-result]").forEach((button)=>button.addEventListener("click",(event)=>{event.preventDefault();newsResultModal.classList.add("is-open");newsResultModal.setAttribute("aria-hidden","false");document.body.classList.add("news-result-open")}));
+document.querySelectorAll("[data-close-news-result]").forEach((button)=>button.addEventListener("click",()=>{newsResultModal.classList.remove("is-open");newsResultModal.setAttribute("aria-hidden","true");document.body.classList.remove("news-result-open")}));
+document.addEventListener("keydown",(event)=>{if(event.key==="Escape"&&newsResultModal?.classList.contains("is-open")){newsResultModal.classList.remove("is-open");newsResultModal.setAttribute("aria-hidden","true");document.body.classList.remove("news-result-open")}});
+
 </script>
 </body>
 </html>
